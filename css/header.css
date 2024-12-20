@@ -30,7 +30,7 @@ header {
   .logo img {
     width: 100px;
     height: 100px;
-    margin-right: 50px; /* Adjust this value as needed */
+    margin-right: 50px; 
   }
   
   .menu-container{
@@ -44,18 +44,17 @@ header {
     list-style: none;
     display: flex;
     align-items: center;
-    justify-content: center; /* Centrer les éléments horizontalement */
+    justify-content: center; 
   }
   
   ul li {
     display: inline-block;
-    margin-right: 20px; /* Ajout de marge entre les éléments */
+    margin-right: 20px; 
   }
   
-  /* Display Picture Styles */
   .display-picture {
-    margin-left: auto; /* Garder la marge à gauche pour centrer verticalement */
-    margin-right: 20px; /* Ajout de la marge à droite pour déplacer l'image vers la droite */
+    margin-left: auto; 
+    margin-right: 20px; 
   }
   
   .display-picture img {
@@ -70,24 +69,23 @@ header {
     border-color: #81A7CA;
   }
   
-  /* Card Styles */
   .card ul {
     display: flex;
     align-items: center;
-    flex-direction: column; /* Mettre les éléments en colonne */
+    flex-direction: column; 
     background: #D2DEEA;
     position: absolute;
     top: 5rem;
     right: 10rem;
     border-radius: 10px;
     border-color: #81A7CA;
-    padding: 10px 20px 10px 20px; /* Ajuster la marge pour plus d'espace */
+    padding: 10px 20px 10px 20px; 
   }
   
   .card ul li {
-    display: flex; /* Ajouter cette ligne pour aligner les éléments horizontalement */
-    align-items: center; /* Centrer les éléments horizontalement */
-    padding: 5px 20px; /* Ajuster la marge entre les éléments */
+    display: flex; 
+    align-items: center; 
+    padding: 5px 20px; 
     color: #000;
     font-size: 14px;
   }
@@ -100,7 +98,7 @@ header {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin-bottom: 10px; /* Ajouter une marge en bas pour séparer le logo des liens */
+    margin-bottom: 10px; 
   }
   
   .card ul a {
@@ -112,7 +110,6 @@ header {
     color: #81c6ca;
   }
   
-  /* Hamburger Menu Styles */
   .burger-menu {
     display: none;
     flex-direction: column;
@@ -128,7 +125,6 @@ header {
     margin: 6px 0;
   }
   
-  /* Responsive Design */
   @media only screen and (max-width: 768px) {
     .burger-menu {
       display: flex;

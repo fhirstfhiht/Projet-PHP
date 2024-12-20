@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="../css/Liste_Match.css">
 </head>
 <body>
-    <?php include 'header.php'; ?>
-    <?php include 'footer.php'; ?>
+    <!-- <?php include 'header.php'; ?> -->
 
     <h1>Liste des Matchs</h1>
 
@@ -31,8 +30,10 @@
                     require_once 'db_connection.php';
 
                     $db = connectDB();
-                    $query = "SELECT Id_Match, Date_Heure_Match, Adversaire, Lieu, Score_equipe, Score_adversaire, Victoire, Egalite FROM Matchs";
+                    $query = "SELECT Id_Match, Date_Heure_Match, Adversaire, Lieu, Score_equipe, Score_adversaire FROM Matchs";
                     $stmt = $db->query($query);
+
+                    $currentDateTime = new DateTime();
 
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         echo "<tr>";
@@ -40,11 +41,16 @@
                         echo "<td>" . htmlspecialchars($row['Adversaire']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['Lieu']) . "</td>";
 
-                        if (!is_null($row['Score_equipe']) && !is_null($row['Score_adversaire'])) {
-                            $result = $row['Score_equipe'] > $row['Score_adversaire'] ? 'Victoire' : ($row['Score_equipe'] == $row['Score_adversaire'] ? 'Égalité' : 'Défaite');
-                            echo "<td>" . $result . "</td>";
+                        $matchDateTime = new DateTime($row['Date_Heure_Match']);
+                        if ($matchDateTime > $currentDateTime) {
+                            echo "<td>A définir</td>";
                         } else {
-                            echo "<td>À venir</td>";
+                            if (!is_null($row['Score_equipe']) && !is_null($row['Score_adversaire'])) {
+                                $result = $row['Score_equipe'] > $row['Score_adversaire'] ? 'Victoire' : ($row['Score_equipe'] == $row['Score_adversaire'] ? 'Égalité' : 'Défaite');
+                                echo "<td>" . $result . "</td>";
+                            } else {
+                                echo "<td>Non défini</td>";
+                            }
                         }
 
                         echo "<td>";
@@ -63,6 +69,6 @@
         </section>
     </main>
 
-    <script src="../js/script.js"></script>
+    <script src="../js/Liste_Match.js"></script>
 </body>
 </html>

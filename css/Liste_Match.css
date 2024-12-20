@@ -1,44 +1,41 @@
 table {
     width: 100%;
-    border-collapse: separate; /* Sépare les bordures pour appliquer border-spacing */
-    border-spacing: 10px; /* Ajoute 10px entre les cellules */
-    margin-bottom: 20px; /* Ajoute de l'espace entre les tables */
-    border: 1px solid #ddd; /* Bordure autour de la table */
+    border-collapse: separate; 
+    border-spacing: 10px; 
+    margin-bottom: 20px; 
+    border: 1px solid #ddd; 
 }
 
 table th, table td {
-    padding: 10px; /* Ajoute de l'espace dans les cellules */
-    text-align: left; /* Aligne le texte à gauche */
-    border: 1px solid #ddd; /* Ajoute une bordure entre les cellules */
+    padding: 10px; 
+    text-align: left; 
+    border: 1px solid #ddd; 
 }
 
 
-/* Styles pour le fond du pop-up (overlay) */
 .popup-overlay {
-    position: fixed; /* Fixe le fond par rapport à la fenêtre */
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    background-color: rgba(0, 0, 0, 0.5); 
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999; /* Au-dessus de tout le reste */
+    z-index: 999; 
 }
 
-/* Styles pour la fenêtre du pop-up */
+
 .popup {
-    background-color: #fff; /* Couleur de fond du contenu */
+    background-color: #fff; 
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     width: 400px;
-    max-width: 90%; /* S'adapte sur les petits écrans */
-    animation: fadeIn 0.3s ease-out; /* Animation d'apparition */
+    animation: fadeIn 0.3s ease-out; 
 }
 
-/* Animation d'apparition */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -50,11 +47,10 @@ table th, table td {
     }
 }
 
-/* Styles pour les champs du formulaire */
 .popup form input,
 .popup form select,
 .popup form button {
-    width: 100%; /* Occupe toute la largeur */
+    width: 100%; 
     margin-bottom: 15px;
     padding: 10px;
     font-size: 16px;
@@ -85,4 +81,31 @@ table th, table td {
 
 .popup form button[type="button"]:hover {
     background-color: #e53935;
+}
+
+
+.btn {
+    background: linear-gradient(90deg, #ff921e, #ffbe0c); /* Dégradé vert */
+    border: none;
+    border-radius: 8px; /* Coins arrondis */
+    color: white; /* Texte blanc */
+    font-size: 16px; /* Taille de police */
+    font-weight: bold; /* Texte en gras */
+    padding: 12px 20px; /* Espacement interne */
+    cursor: pointer; /* Curseur en mode "main" */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre portée */
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s; /* Animations */
+    text-align: center;
+}
+
+.btn:hover {
+    background: linear-gradient(90deg, #ff921e, #ffbe0c); /* Dégradé plus foncé au survol */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Ombre plus intense */
+    transform: translateY(-2px); /* Soulèvement */
+}
+
+.btn:active {
+    background: linear-gradient(90deg, #ff921e, #ffbe0c); /* Couleur enfoncée */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre réduite */
+    transform: translateY(1px); /* Effet d'enfoncement */
 }
