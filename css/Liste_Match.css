@@ -11,3 +11,78 @@ table th, table td {
     text-align: left; /* Aligne le texte à gauche */
     border: 1px solid #ddd; /* Ajoute une bordure entre les cellules */
 }
+
+
+/* Styles pour le fond du pop-up (overlay) */
+.popup-overlay {
+    position: fixed; /* Fixe le fond par rapport à la fenêtre */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Au-dessus de tout le reste */
+}
+
+/* Styles pour la fenêtre du pop-up */
+.popup {
+    background-color: #fff; /* Couleur de fond du contenu */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 90%; /* S'adapte sur les petits écrans */
+    animation: fadeIn 0.3s ease-out; /* Animation d'apparition */
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Styles pour les champs du formulaire */
+.popup form input,
+.popup form select,
+.popup form button {
+    width: 100%; /* Occupe toute la largeur */
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Boutons spécifiques */
+.popup form button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.popup form button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.popup form button[type="button"] {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.popup form button[type="button"]:hover {
+    background-color: #e53935;
+}

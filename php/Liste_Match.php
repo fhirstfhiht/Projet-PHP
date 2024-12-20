@@ -9,6 +9,7 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
+    <?php include 'footer.php'; ?>
 
     <h1>Liste des Matchs</h1>
 
