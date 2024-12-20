@@ -63,10 +63,11 @@
                 </tbody>
             </table>
         </section>
-
-        <section>
-            <button class="btn" onclick="afficherPopupAjouterMatch()">Ajouter un Match</button>
-        </section>
+        <div class= "buttonAjouterMatch">
+            <section>
+                <button class="btn" onclick="afficherPopupAjouterMatch()">Ajouter un Match</button>
+            </section>
+        </div>
     </main>
 
     <script src="../js/Liste_Match.js"></script>

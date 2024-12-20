@@ -85,27 +85,31 @@ table th, table td {
 
 
 .btn {
-    background: linear-gradient(90deg, #ff921e, #ffbe0c); /* Dégradé vert */
+    background: linear-gradient(90deg, #ff921e, #ffbe0c); 
     border: none;
-    border-radius: 8px; /* Coins arrondis */
-    color: white; /* Texte blanc */
-    font-size: 16px; /* Taille de police */
-    font-weight: bold; /* Texte en gras */
-    padding: 12px 20px; /* Espacement interne */
-    cursor: pointer; /* Curseur en mode "main" */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre portée */
-    transition: transform 0.2s, box-shadow 0.2s, background 0.3s; /* Animations */
+    border-radius: 8px; 
+    color: white; 
+    font-size: 16px; 
+    font-weight: bold; 
+    padding: 12px 20px; 
+    cursor: pointer; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s; 
     text-align: center;
 }
 
 .btn:hover {
-    background: linear-gradient(90deg, #ff921e, #ffbe0c); /* Dégradé plus foncé au survol */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Ombre plus intense */
-    transform: translateY(-2px); /* Soulèvement */
+    background: linear-gradient(90deg, #ff921e, #ffbe0c); 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
+    transform: translateY(-2px); 
 }
 
 .btn:active {
-    background: linear-gradient(90deg, #ff921e, #ffbe0c); /* Couleur enfoncée */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre réduite */
-    transform: translateY(1px); /* Effet d'enfoncement */
+    background: linear-gradient(90deg, #ff921e, #ffbe0c); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    transform: translateY(1px); 
+}
+
+.buttonAjouterMatch{
+    text-align: center;
 }

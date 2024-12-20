@@ -1,32 +1,20 @@
-<?php
-    session_start();
-?>
-
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="fr">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/Base.css">
-<body>
-    <header>
-            <div class="menu-container">
-                <div class="logo">
-                    <a href="../php/Acceuil.php"><img src="../img/basketball2.jpg" alt="logo"></a>
-                </div>
-                <div class="burger-menu" onclick="toggleMenu()">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-                <ul class="menuheader">
-                    <li><a href="/PHP/feuille_de_match.php">Feuille de Match</a></li>
-                    <li><a href="/PHP/match.php">Match</a></li>
-                    <li><a href="/PHP/.php">Rien</a></li>
-                    <li><a href="/PHP/stats.php">Statistiques</a></li>
-                    <li><a href="#" class="display-picture"><img src="" alt="profil"></a></li>
-                </ul>
+		<header>
+			<!-- Logo avec lien vers ma page d'acceil -->
+			<a href="index.php">
+				<img src="../img/logo.png" />
+			</a>
+			<div class="menu-container">
+                <nav>
+                    <ul>
+                        <li><a href="index.php" class="<?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>">Accueil</a></li>
+                        <li><a href="Gestion.php" class="<?= basename($_SERVER['PHP_SELF']) == 'Gestion.php' ? 'active' : '' ?>">Gestion</a></li>
+                        <li><a href="FeuilleMatch.php" class="<?= basename($_SERVER['PHP_SELF']) == 'FeuilleMatch.php' ? 'active' : '' ?>">Feuille de Match</a></li>
+                        <li><a href="Statistique.php" class="<?= basename($_SERVER['PHP_SELF']) == 'Statistique.php' ? 'active' : '' ?>">Statistique</a></li>
+                    </ul>
+                </nav>
             </div>
-            
-            
-    </header>
-</body>
-</html>
+            <a href="Connexion.php" class="connexion">Connexion</a>
+		</header>

@@ -1,0 +1,133 @@
+/* Global styles */
+#playerList {
+	list-style: none;
+	padding: 0;
+}
+
+#playerList li {
+	margin-bottom: 10px;
+	position: relative;
+}
+
+/* Hide checkboxes */
+.toggle {
+	display: none;
+}
+
+/* Label as clickable toggle */
+.player-label {
+	width: fit-content;
+	background-color: #007BFF;
+	color: white;
+	border: none;
+	padding: 10px 15px;
+	cursor: pointer;
+	border-radius: 5px;
+	display: block;
+	text-align: left;
+}
+
+.player-label:hover {
+	background-color: #0056b3;
+}
+
+/* Hide player info by default */
+.player-info {
+	display: none;
+	padding: 10px;
+	border: 1px solid #ddd;
+	background-color: #f9f9f9;
+	border-radius: 5px;
+	margin-top: 5px;
+	width: fit-content;
+}
+
+/* Show player info when checkbox is checked */
+.toggle:checked+.player-label+.player-info {
+	display: block;
+}
+
+/* Buttons in the expanded section */
+.actions {
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+#Modifier {
+	color: white;
+	border: none;
+	padding: 8px 12px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 25px;
+	display: flex;
+	background-color: #787878;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#Modifier:hover {
+	background-color: #5c5c5c;
+}
+
+#Supprimer {
+	color: white;
+	border: none;
+	padding: 8px 12px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: auto;
+	display: flex;
+	background-color: rgb(224, 14, 14);
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#Supprimer:hover {
+	background-color: rgb(178, 31, 31);
+}
+
+#Fiche {
+	color: white;
+	border: none;
+	padding: 8px 12px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: auto;
+	display: flex;
+	background-color: #0F1C3F;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#Fiche:hover {
+	background-color: #0b152f;
+}
+
+
+
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	line-height: 1.6;
+}
+
+
+
+/* Main content styles */
+main {
+	padding: 20px;
+}
+
+
+.Commentaires {
+	padding: 10px;
+	width: 75%;
+	border-radius: 5px;
+	border: solid;
+}
