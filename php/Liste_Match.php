@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Matchs</title>
-    <link rel="stylesheet" href="Base.css">
-    <link rel="stylesheet" href="Liste_Match.css">
+    <link rel="stylesheet" href="../css/Base.css">
+    <link rel="stylesheet" href="../css/Liste_Match.css">
 </head>
 <body>
     <?php include 'header.php'; ?>
@@ -21,7 +21,7 @@
                         <th>Adversaire</th>
                         <th>Lieu</th>
                         <th>Résultat</th>
-                        <th>Actions</th>
+                        <th>Modification</th>
                     </tr>
                 </thead>
                 <tbody>

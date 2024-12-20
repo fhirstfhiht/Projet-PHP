@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+    border-collapse: separate; /* Sépare les bordures pour appliquer border-spacing */
+    border-spacing: 10px; /* Ajoute 10px entre les cellules */
+    margin-bottom: 20px; /* Ajoute de l'espace entre les tables */
+    border: 1px solid #ddd; /* Bordure autour de la table */
+}
+
+table th, table td {
+    padding: 10px; /* Ajoute de l'espace dans les cellules */
+    text-align: left; /* Aligne le texte à gauche */
+    border: 1px solid #ddd; /* Ajoute une bordure entre les cellules */
+}
