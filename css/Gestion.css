@@ -1,126 +1,112 @@
+/* Liste des joueurs horizontale */
 #playerList {
-	list-style: none;
-	padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style: none; /* Supprime les puces */
+    padding: 0;
+    margin: 0;
+    justify-content: center; /* Centre la liste horizontalement */
 }
 
-#playerList li {
-	margin-bottom: 10px;
-	position: relative;
+/* Chaque joueur sous forme de carte */
+.player-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 200px; /* Largeur fixe pour alignement propre */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.toggle {
-	display: none;
+.player-item:hover {
+    transform: translateY(-5px); /* Effet de soulèvement au survol */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.player-label {
-	width: fit-content;
-	background-color: #007BFF;
-	color: white;
-	border: none;
-	padding: 10px 15px;
-	cursor: pointer;
-	border-radius: 5px;
-	display: block;
-	text-align: left;
+.player-button {
+    background-color: #0F1C3F;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%; /* Bouton prend toute la largeur */
+    transition: background-color 0.3s ease;
 }
 
-.player-label:hover {
-	background-color: #0056b3;
+.player-button:hover {
+    background-color: #0b152f;
 }
 
-.player-info {
-	display: none;
-	padding: 10px;
-	border: 1px solid #ddd;
-	background-color: #f9f9f9;
-	border-radius: 5px;
-	margin-top: 5px;
-	width: fit-content;
+/* Conteneur global du pop-up */
+.popup {
+    position: fixed;
+    top: 50%; /* Centre verticalement */
+    left: 50%; /* Centre horizontalement */
+    transform: translate(-50%, -50%); /* Ajuste pour centrer parfaitement */
+    background-color: rgba(255, 255, 255, 1);
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* Toujours au-dessus */
+    display: none; /* Masque le pop-up par défaut */
 }
 
-.toggle:checked+.player-label+.player-info {
-	display: block;
+/* Affiche le pop-up lorsqu'il est actif */
+.popup.active {
+    display: block;
 }
 
-.actions {
-	margin-top: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+/* Bouton pour fermer le pop-up */
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    background: none;
+    border: none;
 }
 
-
-#Modifier {
-	color: white;
-	border: none;
-	padding: 8px 12px;
-	border-radius: 5px;
-	cursor: pointer;
-	margin: 25px;
-	display: flex;
-	background-color: #787878;
-	font-weight: bold;
-	text-decoration: none;
+/* Boutons d'action dans le pop-up */
+.popup-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between; /* Répartition égale des boutons */
+    gap: 10px;
 }
 
-#Modifier:hover {
-	background-color: #5c5c5c;
+.popup-actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    width: 45%; /* Largeur des boutons */
+    transition: background-color 0.3s ease;
 }
 
-#Supprimer {
-	color: white;
-	border: none;
-	padding: 8px 12px;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-left: auto;
-	display: flex;
-	background-color: rgb(224, 14, 14);
-	font-weight: bold;
-	text-decoration: none;
+.popup-actions button:nth-child(1) {
+    background-color: #4CAF50; /* Vert pour modifier */
 }
 
-#Supprimer:hover {
-	background-color: rgb(178, 31, 31);
+.popup-actions button:nth-child(1):hover {
+    background-color: #45a049;
 }
 
-#Fiche {
-	color: white;
-	border: none;
-	padding: 8px 12px;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-right: auto;
-	display: flex;
-	background-color: #0F1C3F;
-	font-weight: bold;
-	text-decoration: none;
+.popup-actions button:nth-child(2) {
+    background-color: rgb(224, 14, 14); /* Rouge pour supprimer */
 }
 
-#Fiche:hover {
-	background-color: #0b152f;
-}
-
-
-
-
-body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-	line-height: 1.6;
-}
-
-
-
-main {
-	padding: 20px;
-}
-
-
-.Commentaires {
-	padding: 10px;
-	width: 75%;
-	border-radius: 5px;
-	border: solid;
+.popup-actions button:nth-child(2):hover {
+    background-color: rgb(178, 31, 31);
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feuille de Match</title>
     <link rel="stylesheet" href="../css/Base.css">
-    <link rel="stylesheet" href="../css/Feuille_Match.css">
+    <link rel="stylesheet" href="../css/Feuilles_de_Matchs.css">
 </head>
 <body>
     <?php include 'header.php'; ?> 
@@ -15,23 +15,24 @@
     <main>
         <section>
             <form id="feuilleDeMatchForm" action="enregistrer_feuille.php" method="POST">
-                <h2>Sélectionnez les joueurs</h2>
+                <h2>Sélection des Joueurs</h2>
+                <div class="centrer">
+                    <label for="match">Choisissez un match :</label>
+                    <select name="match_id" id="match" required>
+                        <?php
+                        require_once '../SQL/db_connection.php';
+                        require_once '../SQL/db_Feuilles_de_Matchs.php';
 
-                <label for="match">Choisissez un match :</label>
-                <select name="match_id" id="match" required>
-                    <?php
-                    require_once '../SQL/db_connection.php';
-                    require_once '../SQL/db_Feuilles_de_Matchs.php';
+                        $db = connectDB();
+                        $matches = getMatchsavenir($db);
 
-                    $db = connectDB();
-                    $matches = getMatchsavenir($db);
-
-                    foreach ($matches as $match) {
-                        echo "<option value='" . htmlspecialchars($match['Id_Match']) . "'>" . htmlspecialchars($match['Date_Heure_Match']) . " - " . htmlspecialchars($match['Adversaire']) . "</option>";
-                    }
-                    ?>
-                </select>
-
+                        foreach ($matches as $match) {
+                            echo "<option value='" . htmlspecialchars($match['Id_Match']) . "'>" . htmlspecialchars($match['Date_Heure_Match']) . " - " . htmlspecialchars($match['Adversaire']) . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                
                 <h3>Joueurs actifs</h3>
                 <table>
                     <thead>
@@ -66,12 +67,21 @@
                     </tbody>
                 </table>
 
-                <button type="button" onclick="confirmerValidation(event)">Enregistrer</button>
+                
             </form>
         </section>
+
+        <div class="centrer">
+            <section>
+                <button class="btn" onclick="confirmerValidation(event)">Enregistrer</button>
+            </section>
+        </div>
+
     </main>
 
     <script src="../js/Feuilles_de_Matchs.js"></script>
+
+    <?php include('footer.php'); ?>
 
 </body>
 </html>
