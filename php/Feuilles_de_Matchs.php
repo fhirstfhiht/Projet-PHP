@@ -60,7 +60,7 @@
                             echo "<td>" . htmlspecialchars($player['Commentaires']) . "</td>";
                             echo "<td><input type='radio' name='joueur_" . htmlspecialchars($player['Numero_Licence']) . "' value='titulaire'></td>";
                             echo "<td><input type='radio' name='joueur_" . htmlspecialchars($player['Numero_Licence']) . "' value='remplacant'></td>";
-                            echo "<td><input type='text' name='poste_" . htmlspecialchars($player['Numero_Licence']) . "' value='" . htmlspecialchars($player['Poste'] ?? '') . "' placeholder='Poste'></td>";
+                            echo "<td>" . htmlspecialchars($player['Poste']) . "</td>";
                             echo "</tr>";
                         }
                         ?>
