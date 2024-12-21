@@ -58,7 +58,6 @@ table th, table td {
     border-radius: 4px;
 }
 
-/* Boutons spécifiques */
 .popup form button[type="submit"] {
     background-color: #4CAF50;
     color: white;

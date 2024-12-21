@@ -8,22 +8,18 @@ body {
 
 
 .background-image {
-	background-image: url('/Images/Image_back.png');
-	/* Remplace par le chemin de ton image */
+	background-image: url('../img/Image_back.png');
 	height: 300px;
-	/* Hauteur de l'image */
 	background-position: center;
 	background-size: cover;
 	position: relative;
 	width: 100%;
-	/* Applique un dégradé qui fait estomper l'image */
-	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(255, 255, 255) 100%), url('/Images/Image_back.png');
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(255, 255, 255) 100%), url('../img/Image_back.png');
 }
 
 
 
 
-/* Main content styles */
 main {
 	padding: 20px;
 }

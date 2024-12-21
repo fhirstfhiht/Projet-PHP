@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/Liste_Match.css">
 </head>
 <body>
-    <!-- <?php include 'header.php'; ?> -->
+    <?php include 'header.php'; ?> 
 
     <h1>Liste des Matchs</h1>
 
@@ -27,7 +27,7 @@
                 <tbody>
                     <?php
                     // Connexion à la base de données
-                    require_once 'db_connection.php';
+                    require_once '../SQL/db_connection.php';
 
                     $db = connectDB();
                     $query = "SELECT Id_Match, Date_Heure_Match, Adversaire, Lieu, Score_equipe, Score_adversaire FROM Matchs";
@@ -69,7 +69,6 @@
             </section>
         </div>
     </main>
-
     <script src="../js/Liste_Match.js"></script>
 </body>
 </html>

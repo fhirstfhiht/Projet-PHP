@@ -16,7 +16,6 @@
                 </ul>
             </nav>
         </div>
-        <a href="Connexion.php" class="connexion">Connexion</a>
+        <a href="Connexion.php" class="connexion">Deconnexion</a>
     </header>
-
 </html>

@@ -6,17 +6,9 @@
     <title>Feuille de Match</title>
     <link rel="stylesheet" href="../css/Base.css">
     <link rel="stylesheet" href="../css/Feuille_Match.css">
-    <script>
-        function confirmerValidation(event) {
-            event.preventDefault();
-            if (confirm("Êtes-vous sûr de vouloir enregistrer cette feuille de match ?")) {
-                document.getElementById("feuilleDeMatchForm").submit();
-            }
-        }
-    </script>
 </head>
 <body>
-    <!-- <?php include 'header.php'; ?> -->
+    <?php include 'header.php'; ?> 
 
     <h1>Feuille de Match</h1>
 
@@ -28,14 +20,14 @@
                 <label for="match">Choisissez un match :</label>
                 <select name="match_id" id="match" required>
                     <?php
-                    require_once 'db_connection.php';
+                    require_once '../SQL/db_connection.php';
+                    require_once '../SQL/db_Feuilles_de_Matchs.php';
+
                     $db = connectDB();
+                    $matches = getMatchsavenir($db);
 
-                    $query = "SELECT Id_Match, Date_Heure_Match, Adversaire FROM Matchs WHERE Date_Heure_Match > NOW()";
-                    $stmt = $db->query($query);
-
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<option value='" . htmlspecialchars($row['Id_Match']) . "'>" . htmlspecialchars($row['Date_Heure_Match']) . " - " . htmlspecialchars($row['Adversaire']) . "</option>";
+                    foreach ($matches as $match) {
+                        echo "<option value='" . htmlspecialchars($match['Id_Match']) . "'>" . htmlspecialchars($match['Date_Heure_Match']) . " - " . htmlspecialchars($match['Adversaire']) . "</option>";
                     }
                     ?>
                 </select>
@@ -56,19 +48,18 @@
                     </thead>
                     <tbody>
                         <?php
-                        $query = "SELECT Numero_Licence, Nom, Prenom, Taille, Poids, Commentaires FROM Joueurs WHERE Id_Statut = 'Actif'";
-                        $stmt = $db->query($query);
+                        $players = getJoueursactifsavecposition($db);
 
-                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        foreach ($players as $player) {
                             echo "<tr>";
-                            echo "<td>" . htmlspecialchars($row['Nom']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['Prenom']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['Taille']) . " cm</td>";
-                            echo "<td>" . htmlspecialchars($row['Poids']) . " kg</td>";
-                            echo "<td>" . htmlspecialchars($row['Commentaires']) . "</td>";
-                            echo "<td><input type='radio' name='joueur_" . htmlspecialchars($row['Numero_Licence']) . "' value='titulaire'></td>";
-                            echo "<td><input type='radio' name='joueur_" . htmlspecialchars($row['Numero_Licence']) . "' value='remplacant'></td>";
-                            echo "<td><input type='text' name='poste_" . htmlspecialchars($row['Numero_Licence']) . "' placeholder='Poste'></td>";
+                            echo "<td>" . htmlspecialchars($player['Nom']) . "</td>";
+                            echo "<td>" . htmlspecialchars($player['Prenom']) . "</td>";
+                            echo "<td>" . htmlspecialchars($player['Taille']) . " cm</td>";
+                            echo "<td>" . htmlspecialchars($player['Poids']) . " kg</td>";
+                            echo "<td>" . htmlspecialchars($player['Commentaires']) . "</td>";
+                            echo "<td><input type='radio' name='joueur_" . htmlspecialchars($player['Numero_Licence']) . "' value='titulaire'></td>";
+                            echo "<td><input type='radio' name='joueur_" . htmlspecialchars($player['Numero_Licence']) . "' value='remplacant'></td>";
+                            echo "<td><input type='text' name='poste_" . htmlspecialchars($player['Numero_Licence']) . "' value='" . htmlspecialchars($player['Poste'] ?? '') . "' placeholder='Poste'></td>";
                             echo "</tr>";
                         }
                         ?>
@@ -79,5 +70,8 @@
             </form>
         </section>
     </main>
+
+    <script src="../js/Feuilles_de_Matchs.js"></script>
+
 </body>
 </html>

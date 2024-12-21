@@ -1,9 +1,9 @@
 <?php
 function connectDB() {
-    $host = 'localhost'; // Hôte
-    $db = 'projet'; // Nom de la base de données
-    $user = 'root'; // Utilisateur MySQL
-    $pass = ''; // Mot de passe MySQL (vide par défaut sur XAMPP)
+    $host = 'localhost'; 
+    $db = 'projet'; //change le nom de la base de données 
+    $user = 'root'; 
+    $pass = '';
     $charset = 'utf8mb4';
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

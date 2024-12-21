@@ -21,51 +21,40 @@ nav ul li a.active {
 .menu-container {
 	display: flex;
 	justify-content: center;
-	/* Centre le menu à l'intérieur de ce conteneur */
 	flex-grow: 1;
 }
 
-/* Styles pour la navigation */
 nav {
 	display: flex;
 	justify-content: center;
-	/* Centre horizontalement les éléments dans le menu */
 	align-items: center;
-	/* Centre verticalement les éléments du menu */
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
-/* Styles pour la liste dans la navigation */
 nav ul {
 	display: flex;
 	justify-content: center;
-	/* Centre les éléments du menu */
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
-/* Styles pour chaque élément de la liste */
 nav ul li {
 	display: flex;
 	align-items: center;
-	/* Centre verticalement le lien à l'intérieur de l'élément */
 }
 
-/* Styles pour les liens dans la navigation */
 nav ul li a {
 	padding: 0px 8px;
 	color: #000000;
 	text-decoration: none;
 	display: inline-block;
-	/* Permet de gérer le padding */
 	border-radius: 8px;
 	transition: background-color 0.3s ease;
 	background-color: #ffffff;
 	margin: 0 10px;
-	/* Applique la couleur de fond sur le lien */
 }
 
 nav ul li a:hover {
@@ -73,10 +62,8 @@ nav ul li a:hover {
 	border-radius: 8px;
 }
 
-/* Connexion : reste à droite */
 .connexion {
 	margin-left: auto;
-	/* Cette propriété place le lien Connexion à droite */
 	color: #ffffff;
 	text-decoration: none;
 	border-radius: 8px;

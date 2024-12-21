@@ -19,12 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['username'] = $user['Login'];  // Enregistrer le login de l'utilisateur
 
         // Redirection vers la page d'accueil ou le tableau de bord       
-       header('Location: ../Pages/index.php');
+       header('Location: ../php/index.php');
         exit;
     } else {
         // Identifiant ou mot de passe incorrect, rediriger avec un message d'erreur
         $_SESSION['error'] = 'Identifiant ou mot de passe incorrect.';
-        header('Location: ../Pages/Connexion.php');  // Rediriger vers la page de connexion
+        header('Location: ../php/Connexion.php');  // Rediriger vers la page de connexion
         exit;
     }
 }
