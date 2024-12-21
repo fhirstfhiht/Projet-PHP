@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="fr">
-    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <footer>
 			<p>
 				<small>

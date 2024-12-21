@@ -6,6 +6,7 @@
         <meta charset="utf-8" />
         <title>Page d'accueil</title>
     </head>
+	
     <?php include('header.php'); ?>
     
     <body>

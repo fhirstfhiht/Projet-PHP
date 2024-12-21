@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="fr">
-    <link rel="stylesheet" href="Gestion.css">
+    <link rel="stylesheet" href="../css/Gestion.css">
     <head>
         <meta charset="utf-8" />
         <title>Gestion</title>
