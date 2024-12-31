@@ -4,10 +4,19 @@
     <meta charset="utf-8" />
     <title>Gestion</title>
     <link rel="stylesheet" href="../css/Gestion.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <?php include('header.php'); ?>
 
 <body>
+
+    <div class="centrer">
+            <section>
+                <a href="Liste_Match.php"><button class="btn" onclick="">Liste Match</button></a>
+            </section>
+     </div>
+
     <main>
         <h1>Liste des joueurs</h1>
         <ul id="playerList">
@@ -55,6 +64,8 @@
             <div id="popup-details"></div>
         </div>
     </div>
+
+    
 
     <script src="../js/gestion.js"></script>
 </body>

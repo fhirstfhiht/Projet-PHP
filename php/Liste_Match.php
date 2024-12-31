@@ -6,9 +6,19 @@
     <title>Liste des Matchs</title>
     <link rel="stylesheet" href="../css/Base.css">
     <link rel="stylesheet" href="../css/Liste_Match.css">
+    <link rel="stylesheet" href="../css/index.css">
 </head>
-<body>
-    <?php include 'header.php'; ?> 
+
+<?php include 'header.php'; ?>
+
+<body>     
+     
+
+    <div class= "buttonListeJoueur">
+        <section>
+            <a href="Gestion.php"><button class="btn" >Liste des Joueurs</button></a>
+        </section>
+    </div>
 
     <h1>Liste des Matchs</h1>
 
@@ -69,6 +79,9 @@
             </section>
         </div>
     </main>
+
     <script src="../js/Liste_Match.js"></script>
+
 </body>
+<?php include('footer.php'); ?>
 </html>

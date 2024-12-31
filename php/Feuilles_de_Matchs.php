@@ -6,6 +6,7 @@
     <title>Feuille de Match</title>
     <link rel="stylesheet" href="../css/Base.css">
     <link rel="stylesheet" href="../css/Feuilles_de_Matchs.css">
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
     <?php include 'header.php'; ?> 
