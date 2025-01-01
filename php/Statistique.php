@@ -6,6 +6,7 @@
     <title>Statistiques</title>
     <link rel="stylesheet" href="../css/statistique.css">
     <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
     <?php include('header.php'); ?>
@@ -51,6 +52,7 @@
                         <th>Titularisations</th>
                         <th>Remplacements</th>
                         <th>Moyenne des Évaluations</th>
+                        <th>Matchs Consécutifs</th>
                         <th>Pourcentage de Matchs Gagnés</th>
                     </tr>
                 </thead>
@@ -65,6 +67,13 @@
                                 COUNT(CASE WHEN p.Statut_Participation = 'Titulaire' THEN 1 END) AS Titularisations,
                                 COUNT(CASE WHEN p.Statut_Participation = 'Remplaçant' THEN 1 END) AS Remplacements,
                                 AVG(p.Note) AS MoyenneEvaluation,
+                                MAX( 
+                                    CASE 
+                                        WHEN p.Id_Match IS NOT NULL THEN 
+                                            (SELECT COUNT(*) FROM Participer p2 WHERE p2.Numero_Licence = p.Numero_Licence AND p2.Id_Match <= p.Id_Match)
+                                        ELSE 0
+                                    END
+                                ) AS MatchsConsecutifs,
                                 ROUND((SUM(CASE WHEN m.Victoire = 1 THEN 1 ELSE 0 END) / COUNT(p.Id_Match)) * 100, 2) AS PourcentageGagnes
                               FROM Joueurs j
                               LEFT JOIN Participer p ON j.Numero_Licence = p.Numero_Licence
@@ -82,6 +91,7 @@
                         echo "<td>" . htmlspecialchars($row['Titularisations']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['Remplacements']) . "</td>";
                         echo "<td>" . round($row['MoyenneEvaluation'], 2) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['MatchsConsecutifs']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['PourcentageGagnes']) . "%</td>";
                         echo "</tr>";
                     }
