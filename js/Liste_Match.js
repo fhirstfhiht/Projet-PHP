@@ -1,10 +1,8 @@
-// Affiche la fenêtre modale pour ajouter un match
 function afficherPopupAjouterMatch() {
     const popupOverlay = document.getElementById('popupAjouterMatch');
     if (popupOverlay) {
         popupOverlay.style.display = 'block';
     } else {
-        // Création dynamique si la modale n'existe pas dans le DOM
         const overlay = document.createElement('div');
         overlay.id = 'popupAjouterMatch';
         overlay.className = 'popup-overlay';
@@ -21,13 +19,13 @@ function afficherPopupAjouterMatch() {
                 <input type="text" name="adversaire" id="adversaire" required>
 
                 <label for="lieu">Lieu :</label>
-                <select name="lieu" id="lieu" required>
-                    <option value="domicile">Domicile</option>
-                    <option value="extérieur">Extérieur</option>
-                </select>
+                <input type="text" name="lieu" id="lieu" required>
 
-                <label for="lieu_precis">Lieu Précis :</label>
-                <input type="text" name="lieu_precis" id="lieu_precis" required>
+                <label for="score_equipe">Score Équipe :</label>
+                <input type="number" name="score_equipe" id="score_equipe" min="0" value="0" required>
+
+                <label for="score_adversaire">Score Adversaire :</label>
+                <input type="number" name="score_adversaire" id="score_adversaire" min="0" value="0" required>
 
                 <button type="submit">Ajouter</button>
                 <button type="button" onclick="fermerPopup()">Annuler</button>

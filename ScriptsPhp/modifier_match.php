@@ -10,16 +10,24 @@ if (isset($_GET['id'])) {
         $dateHeure = $_POST['date_heure'];
         $adversaire = $_POST['adversaire'];
         $lieu = $_POST['lieu'];
+        $scoreEquipe = $_POST['score_equipe'];
+        $scoreAdversaire = $_POST['score_adversaire'];
 
         try {
             $updateQuery = "UPDATE Matchs 
-                            SET Date_Heure_Match = :date_heure, Lieu = :lieu, Adversaire = :adversaire 
+                            SET Date_Heure_Match = :date_heure, 
+                                Lieu = :lieu, 
+                                Adversaire = :adversaire, 
+                                Score_Equipe = :score_equipe, 
+                                Score_Adversaire = :score_adversaire
                             WHERE Id_Match = :id";
             $stmt = $db->prepare($updateQuery);
             $stmt->execute([
                 ':date_heure' => $dateHeure,
                 ':lieu' => $lieu,
                 ':adversaire' => $adversaire,
+                ':score_equipe' => $scoreEquipe,
+                ':score_adversaire' => $scoreAdversaire,
                 ':id' => $idMatch
             ]);
 
@@ -42,34 +50,45 @@ if (isset($_GET['id'])) {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Modifier Match</title>
+                <link rel="stylesheet" href="../css/Base.css">
+                <link rel="stylesheet" href="../css/index.css">
+                <link rel="stylesheet" href="../css/modifier_match.css">
             </head>
             <body>
+                <h1>Modifier le Match</h1>
                 <main>
                     <form action="modifier_match.php?id=<?= htmlspecialchars($idMatch) ?>" method="POST">
-                        <h2>Modifier le Match</h2>
-                        <label>Date et Heure :</label>
-                        <input type="datetime-local" name="date_heure" value="<?= htmlspecialchars($match['Date_Heure_Match']) ?>" required><br>
+                        <label for="date_heure">Date et Heure :</label>
+                        <input type="datetime-local" name="date_heure" id="date_heure" 
+                               value="<?= htmlspecialchars($match['Date_Heure_Match']) ?>" required><br>
 
-                        <label>Adversaire :</label>
-                        <input type="text" name="adversaire" value="<?= htmlspecialchars($match['Adversaire']) ?>" required><br>
+                        <label for="adversaire">Adversaire :</label>
+                        <input type="text" name="adversaire" id="adversaire" 
+                               value="<?= htmlspecialchars($match['Adversaire']) ?>" required><br>
 
-                        <label>Lieu :</label>
-                        <select name="lieu" required>
-                            <option value="domicile" <?= $match['Lieu'] === "domicile" ? "selected" : "" ?>>Domicile</option>
-                            <option value="extérieur" <?= $match['Lieu'] === "extérieur" ? "selected" : "" ?>>Extérieur</option>
-                        </select><br>
+                        <label for="lieu">Lieu :</label>
+                        <input type="text" name="lieu" id="lieu" 
+                               value="<?= htmlspecialchars($match['Lieu']) ?>" required><br>
 
-                        <button type="submit">Modifier</button>
+                        <label for="score_equipe">Score Équipe :</label>
+                        <input type="number" name="score_equipe" id="score_equipe" min="0" 
+                               value="<?= htmlspecialchars($match['Score_Equipe']) ?>" required><br>
+
+                        <label for="score_adversaire">Score Adversaire :</label>
+                        <input type="number" name="score_adversaire" id="score_adversaire" min="0" 
+                               value="<?= htmlspecialchars($match['Score_Adversaire']) ?>" required><br>
+
+                        <button type="submit">Enregistrer les modifications</button>
                     </form>
                 </main>
             </body>
             </html>
             <?php
         } else {
-            echo "Match introuvable.";
+            echo "<p>Match introuvable.</p>";
         }
     }
 } else {
-    echo "ID du match non spécifié.";
+    echo "<p>ID du match non spécifié.</p>";
 }
 ?>
