@@ -110,3 +110,106 @@
 .popup-actions button:nth-child(2):hover {
     background-color: rgb(178, 31, 31);
 }
+
+/* Conteneur du popup */
+.popup-ajouter-joueur {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 1001;
+    width: 500px; /* Largeur augmentée */
+    max-height: 80%; /* Hauteur maximale en pourcentage de l'écran */
+    overflow-y: auto; /* Défilement si le contenu dépasse */
+    font-family: Arial, sans-serif;
+}
+
+/* Titre */
+.popup-ajouter-joueur h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.6em;
+    color: #333;
+}
+
+/* Labels */
+.popup-ajouter-joueur label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-size: 1em;
+}
+
+/* Champs d'entrée et de sélection */
+.popup-ajouter-joueur input,
+.popup-ajouter-joueur select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+}
+
+.popup-ajouter-joueur input:focus,
+.popup-ajouter-joueur select:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Boutons dans le popup */
+.popup-ajouter-joueur button {
+    display: inline-block;
+    width: calc(48% - 5px);
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Bouton Ajouter */
+.popup-ajouter-joueur button[type="submit"] {
+    background-color: #4CAF50;
+}
+
+.popup-ajouter-joueur button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Bouton Annuler */
+.popup-ajouter-joueur button[type="button"] {
+    background-color: rgb(224, 14, 14);
+}
+
+.popup-ajouter-joueur button[type="button"]:hover {
+    background-color: rgb(178, 31, 31);
+}
+
+/* Alignement des boutons */
+.popup-ajouter-joueur button:last-child {
+    margin-right: 0;
+}
+
+/* Placeholder text styling */
+.popup-ajouter-joueur input::placeholder {
+    font-style: italic;
+    color: #aaa;
+}
+
+/* Centrage du formulaire */
+.popup-ajouter-joueur form {
+    margin: 0 auto;
+}

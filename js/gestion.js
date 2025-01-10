@@ -1,14 +1,9 @@
-console.log("Fichier gestion.js chargé !");
-
-
 function showPopup(playerInfo) {
     const popup = document.getElementById('popup');
     const detailsContainer = document.getElementById('popup-details');
 
-    // Insérer les informations du joueur dans le conteneur du pop-up
     detailsContainer.innerHTML = playerInfo;
 
-    // Activer l'affichage du pop-up
     popup.classList.add('active');
 }
 
@@ -18,26 +13,18 @@ document.getElementById('close-popup').addEventListener('click', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Gestion déléguée pour le bouton Modifier
     document.body.addEventListener('click', function(event) {
         if (event.target.classList.contains('btn-modifier')) {
             console.log("Bouton Modifier cliqué");
             const joueurId = event.target.getAttribute('data-id');
             window.location.href = `../ScriptsPhp/modifier.php?id=${joueurId}`;
         }
-    });    
-});
+    });
 
-document.addEventListener('DOMContentLoaded', function () {
-    console.log("DOM chargé et gestion.js actif !");
-
-    // Gestion des clics sur le body
-    document.body.addEventListener('click', function (event) {
+    document.body.addEventListener('click', function(event) {
         console.log("Élément cliqué :", event.target);
 
-        // Vérifiez si le clic provient d'un bouton Supprimer
         if (event.target.classList.contains('btn-supprimer')) {
-            console.log("Bouton Supprimer détecté !");
             const joueurId = event.target.getAttribute('data-id');
             console.log("ID du joueur à supprimer :", joueurId);
 
@@ -58,4 +45,96 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+function afficherPopupAjouterJoueur() {
+    console.log("Bouton Ajouter un Joueur cliqué.");
+    let popupContent = document.getElementById("popupContent");
+
+    if (!popupContent) {
+        console.log("popupContent n'existe pas, création dynamique.");
+        const overlay = document.getElementById("popupAjouterJoueurOverlay");
+        popupContent = document.createElement("div");
+        popupContent.id = "popupContent";
+        popupContent.className = "popup-ajouter-joueur";
+        popupContent.style.display = "none"; 
+        overlay.appendChild(popupContent); 
+    }
+
+    popupContent.style.display = "block"; 
+    popupContent.innerHTML = `
+        <form action="../ScriptsPhp/ajouter_Joueur.php" method="POST" onsubmit="return validerFormulaire()">
+            <h2>Ajouter un Joueur</h2>
+            
+            <label for="nom">Nom :</label>
+            <input type="text" name="nom" id="nom" required>
+
+            <label for="prenom">Prénom :</label>
+            <input type="text" name="prenom" id="prenom" required>
+
+            <label for="date_naissance">Date de Naissance :</label>
+            <input type="date" name="date_naissance" id="date_naissance" required>
+
+
+            <label for="Numero_Licence">n° Licence :</label>
+            <input type="text" name="Numero_Licence" id="Numero_Licence" required placeholder="Doit commencer par J">
+
+            <label for="taille">Taille (cm) :</label>
+            <input type="number" name="taille" id="taille" required placeholder="Exemple : 180">
+
+            <label for="poids">Poids (kg) :</label>
+            <input type="number" name="poids" id="poids" required placeholder="Exemple : 75">
+
+            <label for="statut">Statut :</label>
+            <select name="Id_Statut" id="statut" required>
+                <option value="STAT001">Actif</option>
+                <option value="STAT002">Blessé</option>
+                <option value="STAT003">Suspendu</option>
+                <option value="STAT004">Absent</option>
+            </select>
+
+
+            <label for="poste">Poste :</label>
+            <select name="Poste" id="poste" required>
+                <option value="Ailier">Ailier</option>
+                <option value="Meneur">Meneur</option>
+                <option value="Arrière">Arrière</option>
+                <option value="Ailier Fort">Ailier Fort</option>
+                <option value="Pivot">Pivot</option>
+            </select>
+
+
+            <button type="submit">Ajouter</button>
+            <button type="button" onclick="fermerPopupAjouterJoueur()">Annuler</button>
+        </form>
+    `;
+}
+
+function validerFormulaire() {
+    const Numero_Licence = document.getElementById("Numero_Licence").value;
+    if (!Numero_Licence.startsWith("J")) {
+        alert("Le numéro de licence doit commencer par 'J'.");
+        return false; 
+    }
+    return true; 
+}
+
+function fermerPopupAjouterJoueur() {
+    console.log("Fermeture du popup Ajouter un Joueur.");
+    const popupContent = document.getElementById('popupContent');
+    if (popupContent) {
+        popupContent.style.display = 'none'; 
+        popupContent.innerHTML = ''; 
+    } else {
+        console.error('Le popupContent est introuvable.');
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const popupContent = document.getElementById("popupContent");
+    if (popupContent) {
+        console.log("popupContent trouvé :", popupContent);
+    } else {
+        console.error("popupContent n'est pas présent dans le DOM après le chargement.");
+    }
+});
 

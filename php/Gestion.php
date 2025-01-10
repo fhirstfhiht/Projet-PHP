@@ -67,6 +67,10 @@
         </div>
     </div>
 
+    <div id="popupAjouterJoueurOverlay" class="centrer">
+        <button class="btn" onclick="afficherPopupAjouterJoueur()">Ajouter un Joueur</button>
+    </div>
+    
     <script src="../js/gestion.js"></script>
 </body>
 
