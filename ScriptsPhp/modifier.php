@@ -85,6 +85,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label>Date de Naissance :</label>
         <input type="date" name="date_naissance" value="<?= htmlspecialchars($joueur['Date_De_Naissance'] ?? '') ?>" required><br>
 
+        <label>Taille (cm) :</label>
+        <input type="number" name="taille" value="<?= htmlspecialchars($joueur['Taille'] ?? '') ?>" required><br>
+
+        <label>Poids (kg) :</label>
+        <input type="number" name="poids" id="poids" value="<?= htmlspecialchars($joueur['Poids'] ?? '') ?>" required><br>
+
         <label>Statut :</label>
         <select name="statut" required>
             <?php foreach ($statuts as $statut): ?>

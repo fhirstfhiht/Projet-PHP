@@ -9,26 +9,32 @@
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <?php include 'header.php'; ?> 
+    <?php include 'header.php'; ?>
 
     <h1>Feuille de Match</h1>
 
     <main>
+        <?php
+        require_once '../SQL/db_connection.php';
+        require_once '../SQL/db_Feuilles_de_Matchs.php';
+
+        $db = connectDB();
+        $matches = getMatchsAvenir($db);
+        $players = getJoueursActifsAvecPosition($db);
+        ?>
         <section>
-            <form id="feuilleDeMatchForm" action="enregistrer_feuille.php" method="POST">
+            <form id="feuilleDeMatchForm" action="../ScriptsPhp/enregistrer_feuille.php" method="POST">
                 <h2>Sélection des Joueurs</h2>
                 <div class="centrer">
                     <label for="match">Choisissez un match :</label>
-                    <select name="match_id" id="match" required>
+                    <select name="Id_Match" id="match" required>
+                        <option value="" disabled selected>-- Sélectionnez un match --</option>
                         <?php
-                        require_once '../SQL/db_connection.php';
-                        require_once '../SQL/db_Feuilles_de_Matchs.php';
-
-                        $db = connectDB();
-                        $matches = getMatchsavenir($db);
-
                         foreach ($matches as $match) {
-                            echo "<option value='" . htmlspecialchars($match['Id_Match']) . "'>" . htmlspecialchars($match['Date_Heure_Match']) . " - " . htmlspecialchars($match['Adversaire']) . "</option>";
+                            echo "<option value='" . htmlspecialchars($match['Id_Match']) . "'>" 
+                                . htmlspecialchars($match['Date_Heure_Match']) . " - " 
+                                . htmlspecialchars($match['Adversaire']) 
+                                . "</option>";
                         }
                         ?>
                     </select>
@@ -50,8 +56,6 @@
                     </thead>
                     <tbody>
                         <?php
-                        $players = getJoueursactifsavecposition($db);
-
                         foreach ($players as $player) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($player['Nom']) . "</td>";
@@ -67,8 +71,6 @@
                         ?>
                     </tbody>
                 </table>
-
-                
             </form>
         </section>
 
@@ -77,12 +79,10 @@
                 <button class="btn" onclick="confirmerValidation(event)">Enregistrer</button>
             </section>
         </div>
-
     </main>
 
     <script src="../js/Feuilles_de_Matchs.js"></script>
 
     <?php include('footer.php'); ?>
-
 </body>
 </html>

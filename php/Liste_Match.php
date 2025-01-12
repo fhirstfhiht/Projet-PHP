@@ -72,7 +72,10 @@ $currentDateTime = new DateTime();
                     }
 
                     echo "<td>";
-                    echo "<a href='../ScriptsPhp/modifier_match.php?id=" . htmlspecialchars($row['Id_Match']) . "'>Modifier</a> | ";
+                    if ($matchDateTime > $currentDateTime) {
+                        echo "<a href='../ScriptsPhp/modifier_match.php?id=" . htmlspecialchars($row['Id_Match']) . "'>Modifier</a> | ";
+                    }
+                     
                     echo "<a href='javascript:void(0)' onclick=\"confirmerSuppression('" . htmlspecialchars($row['Id_Match']) . "')\">Supprimer</a>";
                     echo "</td>";
                     echo "</tr>";

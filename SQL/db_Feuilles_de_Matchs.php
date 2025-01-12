@@ -17,3 +17,9 @@ function getJoueursactifsavecposition($db) {
     $stmt = $db->query($query);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function insertPlayerParticipation($numeroLicence, $matchId, $statutParticipation, $poste) {
+    $pdo = connectDB(); // Connexion à la base de données via db_connection.php
+    $stmt = $pdo->prepare("INSERT INTO participer (Numero_Licence, Id_Match, Statut_Participation, Poste) VALUES (?, ?, ?, ?)");
+    $stmt->execute([$numeroLicence, $matchId, $statutParticipation, $poste]);
+}

@@ -18,7 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $poids = (float)$_POST['poids'];
     $idStatut = htmlspecialchars($_POST['Id_Statut']); // STAT001, STAT002, etc.
     $poste = htmlspecialchars($_POST['Poste']); // Poste pour la table Participer
-    $idMatch = htmlspecialchars($_POST['Id_Match']); // Id du match
+
+    // Si Id_Match n'est pas défini ou est vide, le définir à NULL
+    $idMatch = isset($_POST['Id_Match']) && !empty($_POST['Id_Match']) ? htmlspecialchars($_POST['Id_Match']) : NULL;
 
     // Validation du numéro de licence
     if (strpos($numeroLicence, "J") !== 0) {
@@ -34,12 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Erreur : Le statut sélectionné est invalide.");
     }
 
-    // Insertion dans la table Joueurs
-    $sqlJoueurs = "INSERT INTO Joueurs (Numero_Licence, Nom, Prenom, Date_De_Naissance, Taille, Poids, Id_Statut)
-                   VALUES (:numeroLicence, :nom, :prenom, :dateNaissance, :taille, :poids, :idStatut)";
-    $stmtJoueurs = $pdo->prepare($sqlJoueurs);
-
     try {
+        // Insertion dans la table Joueurs
+        $sqlJoueurs = "INSERT INTO Joueurs (Numero_Licence, Nom, Prenom, Date_De_Naissance, Taille, Poids, Id_Statut)
+                       VALUES (:numeroLicence, :nom, :prenom, :dateNaissance, :taille, :poids, :idStatut)";
+        $stmtJoueurs = $pdo->prepare($sqlJoueurs);
+
         $stmtJoueurs->execute([
             ':numeroLicence' => $numeroLicence,
             ':nom' => $nom,
@@ -62,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         ]);
 
         // Redirection vers Gestion.php après l'ajout réussi
-        header("Location: Gestion.php");
+        header("Location: ../php/Gestion.php");
         exit;
     } catch (PDOException $e) {
         die("Erreur lors de l'insertion : " . $e->getMessage());
