@@ -1,45 +1,26 @@
 <?php
-// Connexion à la base de données
-try {
-    $pdo = new PDO("mysql:host=localhost;dbname=projet;charset=utf8", "root", "");
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erreur de connexion à la base de données : " . $e->getMessage());
-}
+include_once '../SQL/db_connection.php';
 
-// Vérifier si le formulaire a été soumis
+$pdo = connectDB();
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Récupérer les données du formulaire
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
     $numeroLicence = htmlspecialchars($_POST['Numero_Licence']);
     $dateNaissance = htmlspecialchars($_POST['date_naissance']);
     $taille = (int)$_POST['taille'];
     $poids = (float)$_POST['poids'];
-    $idStatut = htmlspecialchars($_POST['Id_Statut']); // STAT001, STAT002, etc.
-    $poste = htmlspecialchars($_POST['Poste']); // Poste pour la table Participer
+    $idStatut = htmlspecialchars($_POST['Id_Statut']);
+    $Poste_Joueur = htmlspecialchars($_POST['Poste']);
 
-    // Si Id_Match n'est pas défini ou est vide, le définir à NULL
-    $idMatch = isset($_POST['Id_Match']) && !empty($_POST['Id_Match']) ? htmlspecialchars($_POST['Id_Match']) : NULL;
-
-    // Validation du numéro de licence
     if (strpos($numeroLicence, "J") !== 0) {
-        die("Erreur : Le numéro de licence doit commencer par 'J'.");
-    }
-
-    // Validation de l'existence de l'Id_Statut
-    $stmtStatut = $pdo->prepare("SELECT COUNT(*) FROM statut WHERE Id_Statut = :idStatut");
-    $stmtStatut->execute([':idStatut' => $idStatut]);
-    $statutExiste = $stmtStatut->fetchColumn();
-
-    if (!$statutExiste) {
-        die("Erreur : Le statut sélectionné est invalide.");
+        echo "<div class='error'>Le numéro de licence doit commencer par 'J'.</div>";
+        exit;
     }
 
     try {
-        // Insertion dans la table Joueurs
-        $sqlJoueurs = "INSERT INTO Joueurs (Numero_Licence, Nom, Prenom, Date_De_Naissance, Taille, Poids, Id_Statut)
-                       VALUES (:numeroLicence, :nom, :prenom, :dateNaissance, :taille, :poids, :idStatut)";
+        $sqlJoueurs = "INSERT INTO Joueurs (Numero_Licence, Nom, Prenom, Date_De_Naissance, Taille, Poids, Poste_Joueur, Id_Statut)
+                       VALUES (:numeroLicence, :nom, :prenom, :dateNaissance, :taille, :poids, :Poste_Joueur, :idStatut)";
         $stmtJoueurs = $pdo->prepare($sqlJoueurs);
 
         $stmtJoueurs->execute([
@@ -49,27 +30,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             ':dateNaissance' => $dateNaissance,
             ':taille' => $taille,
             ':poids' => $poids,
+            ':Poste_Joueur' => $Poste_Joueur,
             ':idStatut' => $idStatut,
         ]);
 
-        // Insertion dans la table Participer
-        $sqlParticiper = "INSERT INTO Participer (Numero_Licence, Id_Match, Poste)
-                          VALUES (:numeroLicence, :idMatch, :poste)";
-        $stmtParticiper = $pdo->prepare($sqlParticiper);
-
-        $stmtParticiper->execute([
-            ':numeroLicence' => $numeroLicence,
-            ':idMatch' => $idMatch,
-            ':poste' => $poste,
-        ]);
-
-        // Redirection vers Gestion.php après l'ajout réussi
-        header("Location: ../php/Gestion.php");
+        header("Location: ../php/Gestion.php?success=1");
         exit;
     } catch (PDOException $e) {
-        die("Erreur lors de l'insertion : " . $e->getMessage());
+        echo "<div class='error'>Erreur lors de l'insertion : " . htmlspecialchars($e->getMessage()) . "</div>";
     }
 } else {
-    echo "Aucune donnée soumise.";
+    echo "<div class='error'>Aucune donnée soumise.</div>";
 }
 ?>

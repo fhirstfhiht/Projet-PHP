@@ -25,10 +25,9 @@
 
             // Requête pour récupérer les joueurs avec leurs informations
             $query = "SELECT j.Numero_Licence, j.Nom, j.Prenom, j.Date_De_Naissance, j.Commentaires, 
-                             COALESCE(p.Poste, 'Non spécifié') AS Poste, 
+                             j.Poste_Joueur AS Poste, 
                              s.Libelle AS Statut 
                       FROM Joueurs j 
-                      LEFT JOIN Participer p ON j.Numero_Licence = p.Numero_Licence 
                       LEFT JOIN Statut s ON j.Id_Statut = s.Id_Statut";
             $stmt = $db->query($query);
 

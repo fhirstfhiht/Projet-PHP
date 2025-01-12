@@ -1,40 +1,44 @@
 <?php
-require_once '../SQL/db_Feuilles_de_Matchs.php'; // Inclusion des fonctions de gestion des données
+include_once '../SQL/db_connection.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Initialisation
-    $matchId = $_POST['Id_Match'] ?? null; // Récupérer l'identifiant du match sélectionné
-    $titulairesCount = 0; // Compteur pour les titulaires
+$pdo = connectDB();
 
-    // Vérification : Un match doit être sélectionné
-    if (!$matchId) {
-        die("Erreur : Aucun match sélectionné.");
-    }
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $idMatch = $_POST['Id_Match'];
+    $participations = $_POST['participation'];
 
-    try {
-        // Parcourir les données envoyées via le formulaire
-        foreach ($_POST as $key => $value) {
-            // Identifier les clés des joueurs avec le préfixe 'joueur_'
-            if (str_starts_with($key, 'joueur_') && $value === 'titulaire') {
-                $numeroLicence = str_replace('joueur_', '', $key); // Extraire le numéro de licence du joueur
-                insertPlayerParticipation($numeroLicence, $matchId, 'titulaire', 'Poste par défaut'); // Insertion dans la base
-                $titulairesCount++;
-            }
+    foreach ($participations as $numeroLicence => $detailsParticipation) {
+        $statutParticipation = $detailsParticipation['statut'];
+        $posteMatch = $detailsParticipation['poste']; // Poste sélectionné pour ce match
+
+        // Validation supplémentaire si nécessaire
+        $validPostes = ['Ailier', 'Meneur', 'Arrière', 'Ailier Fort', 'Pivot'];
+        if (!in_array($posteMatch, $validPostes)) {
+            continue; // Ignorer si le poste n'est pas valide
         }
 
-        // Vérification : Au moins 5 titulaires doivent être sélectionnés
-        if ($titulairesCount < 5) {
-            die("Erreur : Vous devez sélectionner au moins 5 titulaires.");
+        try {
+            // Insérer dans la table `participer`
+            $insertQuery = $pdo->prepare(
+                "INSERT INTO participer (Numero_Licence, Id_Match, Statut_Participation, Poste_Match)
+                 VALUES (:numeroLicence, :idMatch, :statutParticipation, :posteMatch)"
+            );
+            $insertQuery->execute([
+                ':numeroLicence' => $numeroLicence,
+                ':idMatch' => $idMatch,
+                ':statutParticipation' => $statutParticipation,
+                ':posteMatch' => $posteMatch,
+            ]);
+        } catch (PDOException $e) {
+            echo "<div class='error'>Erreur lors de l'insertion : " . htmlspecialchars($e->getMessage()) . "</div>";
+            exit;
         }
-
-        // Succès
-        echo "Feuille de match enregistrée avec succès.";
-    } catch (Exception $e) {
-        // Gestion des erreurs
-        die("Erreur lors de l'enregistrement : " . $e->getMessage());
     }
+
+    // Redirection en cas de succès
+    header("Location: ../php/Feuilles_de_Matchs.php?success=1");
+    exit;
 } else {
-    // Si la méthode n'est pas POST, afficher une erreur
-    die("Méthode non autorisée.");
+    echo "<div class='error'>Aucune donnée soumise.</div>";
 }
 ?>

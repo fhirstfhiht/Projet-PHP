@@ -1,88 +1,86 @@
+<?php
+include_once '../SQL/db_connection.php';
+
+$pdo = connectDB();
+
+// Récupérer les matchs disponibles
+$matchQuery = $pdo->prepare("SELECT Id_Match, Date_Heure_Match, Adversaire FROM matchs WHERE Date_Heure_Match > NOW()");
+$matchQuery->execute();
+$matchs = $matchQuery->fetchAll();
+
+// Récupérer les joueurs actifs
+$joueurQuery = $pdo->prepare("SELECT Numero_Licence, Nom, Prenom, Poste_Joueur FROM joueurs WHERE Id_Statut = 'STAT001'");
+$joueurQuery->execute();
+$joueurs = $joueurQuery->fetchAll();
+?>
+
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feuille de Match</title>
-    <link rel="stylesheet" href="../css/Base.css">
     <link rel="stylesheet" href="../css/Feuilles_de_Matchs.css">
+    <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/index.css">
 </head>
+<?php include('header.php'); ?>
 <body>
-    <?php include 'header.php'; ?>
+    <h1 class="centrer">Créer une Feuille de Match</h1>
 
-    <h1>Feuille de Match</h1>
+    <form id="feuilleDeMatchForm" action="../ScriptsPhp/enregistrer_feuille.php" method="POST">
+        <h2 for="match">Match :</h2>
+        <select id="match" name="Id_Match" required>
+            <option value="">-- Sélectionnez un match --</option>
+            <?php foreach ($matchs as $match): ?>
+                <option value="<?= htmlspecialchars($match['Id_Match']) ?>">
+                    <?= htmlspecialchars($match['Date_Heure_Match'] . " - " . $match['Adversaire']) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
 
-    <main>
-        <?php
-        require_once '../SQL/db_connection.php';
-        require_once '../SQL/db_Feuilles_de_Matchs.php';
+        <h2 class="centrer">Joueurs disponibles</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Poste Préféré</th>
+                    <th>Sélectionnez un Poste</th>
+                    <th>Titulaire</th>
+                    <th>Remplaçant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($joueurs as $joueur): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($joueur['Nom']) ?></td>
+                        <td><?= htmlspecialchars($joueur['Prenom']) ?></td>
+                        <td><?= htmlspecialchars($joueur['Poste_Joueur']) ?></td>
+                        <td>
+                            <select name="participation[<?= $joueur['Numero_Licence'] ?>][poste]">
+                                <option value="">-- Sélectionnez un Poste --</option>
+                                <option value="Ailier">Ailier</option>
+                                <option value="Meneur">Meneur</option>
+                                <option value="Arrière">Arrière</option>
+                                <option value="Ailier Fort">Ailier Fort</option>
+                                <option value="Pivot">Pivot</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="radio" name="participation[<?= $joueur['Numero_Licence'] ?>][statut]" value="titulaire">
+                        </td>
+                        <td>
+                            <input type="radio" name="participation[<?= $joueur['Numero_Licence'] ?>][statut]" value="remplaçant">
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
 
-        $db = connectDB();
-        $matches = getMatchsAvenir($db);
-        $players = getJoueursActifsAvecPosition($db);
-        ?>
-        <section>
-            <form id="feuilleDeMatchForm" action="../ScriptsPhp/enregistrer_feuille.php" method="POST">
-                <h2>Sélection des Joueurs</h2>
-                <div class="centrer">
-                    <label for="match">Choisissez un match :</label>
-                    <select name="Id_Match" id="match" required>
-                        <option value="" disabled selected>-- Sélectionnez un match --</option>
-                        <?php
-                        foreach ($matches as $match) {
-                            echo "<option value='" . htmlspecialchars($match['Id_Match']) . "'>" 
-                                . htmlspecialchars($match['Date_Heure_Match']) . " - " 
-                                . htmlspecialchars($match['Adversaire']) 
-                                . "</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                
-                <h3>Joueurs actifs</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Taille</th>
-                            <th>Poids</th>
-                            <th>Commentaire</th>
-                            <th>Titulaire</th>
-                            <th>Remplaçant</th>
-                            <th>Poste</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($players as $player) {
-                            echo "<tr>";
-                            echo "<td>" . htmlspecialchars($player['Nom']) . "</td>";
-                            echo "<td>" . htmlspecialchars($player['Prenom']) . "</td>";
-                            echo "<td>" . htmlspecialchars($player['Taille']) . " cm</td>";
-                            echo "<td>" . htmlspecialchars($player['Poids']) . " kg</td>";
-                            echo "<td>" . htmlspecialchars($player['Commentaires']) . "</td>";
-                            echo "<td><input type='radio' name='joueur_" . htmlspecialchars($player['Numero_Licence']) . "' value='titulaire'></td>";
-                            echo "<td><input type='radio' name='joueur_" . htmlspecialchars($player['Numero_Licence']) . "' value='remplacant'></td>";
-                            echo "<td>" . htmlspecialchars($player['Poste']) . "</td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </form>
-        </section>
-
-        <div class="centrer">
-            <section>
-                <button class="btn" onclick="confirmerValidation(event)">Enregistrer</button>
-            </section>
-        </div>
-    </main>
+        <button type="submit" class="btn">Enregistrer la Feuille de Match</button>
+    </form>
 
     <script src="../js/Feuilles_de_Matchs.js"></script>
-
-    <?php include('footer.php'); ?>
 </body>
+
+<?php include('footer.php'); ?>
 </html>

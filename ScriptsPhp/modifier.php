@@ -1,118 +1,101 @@
 <?php
-// Activer les erreurs pour le débogage
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+include_once '../SQL/db_connection.php'; // Inclusion du fichier de connexion
 
-require_once '../SQL/db_connection.php';
+$pdo = connectDB(); // Initialisation de la connexion 
 
-$db = connectDB();
-
-// Récupérer les données du joueur pour affichage dans le formulaire
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    // Récupérer les informations du joueur
-    $stmt = $db->prepare("SELECT * FROM Joueurs WHERE Numero_Licence = ?");
-    $stmt->execute([$id]);
-    $joueur = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Charger les informations du joueur
+    $query = $pdo->prepare("SELECT * FROM joueurs WHERE Numero_Licence = :id");
+    $query->bindParam(':id', $id, PDO::PARAM_STR);
+    $query->execute();
+    $joueur = $query->fetch(PDO::FETCH_ASSOC);
 
     if (!$joueur) {
-        die("Erreur : Joueur introuvable.");
+        echo "Joueur introuvable.";
+        exit;
     }
-
-    // Récupérer la liste des statuts
-    $statutStmt = $db->prepare("SELECT Id_Statut, Libelle FROM Statut");
-    $statutStmt->execute();
-    $statuts = $statutStmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Récupérer la dernière position du joueur depuis la table Participer
-    $positionStmt = $db->prepare("SELECT Poste FROM Participer WHERE Numero_Licence = ? LIMIT 1");
-    $positionStmt->execute([$id]);
-    $position = $positionStmt->fetchColumn() ?? '';
+} else {
+    echo "ID du joueur non fourni.";
+    exit;
 }
 
-// Mettre à jour les données du joueur après soumission du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['id'];
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $date_naissance = $_POST['date_naissance'];
-    $statut = $_POST['statut'];
-    $position = $_POST['position'];
-    $commentaire = $_POST['commentaire'];
+    $taille = $_POST['taille'];
+    $poids = $_POST['poids'];
+    $poste = $_POST['poste'];
+    $id_statut = $_POST['Id_Statut'];
 
-    try {
-        $db->beginTransaction();
+    // Mise à jour des informations du joueur
+    $updateQuery = $pdo->prepare(
+        "UPDATE joueurs 
+        SET Nom = :nom, Prenom = :prenom, Date_De_Naissance = :date_naissance, 
+            Taille = :taille, Poids = :poids, Poste_Joueur = :poste, Id_Statut = :id_statut 
+        WHERE Numero_Licence = :id"
+    );
 
-        // Mettre à jour les données dans la table Joueurs
-        $stmt = $db->prepare("UPDATE Joueurs SET Nom = ?, Prenom = ?, Date_De_Naissance = ?, Id_Statut = ?, Commentaires = ? WHERE Numero_Licence = ?");
-        $stmt->execute([$nom, $prenom, $date_naissance, $statut, $commentaire, $id]);
+    $updateQuery->execute([
+        ':nom' => $nom,
+        ':prenom' => $prenom,
+        ':date_naissance' => $date_naissance,
+        ':taille' => $taille,
+        ':poids' => $poids,
+        ':poste' => $poste,
+        ':id_statut' => $id_statut,
+        ':id' => $id,
+    ]);
 
-        // Mettre à jour la position dans Participer
-        $postStmt = $db->prepare("UPDATE Participer SET Poste = ? WHERE Numero_Licence = ? LIMIT 1");
-        $postStmt->execute([$position, $id]);
-
-        $db->commit();
-
-        header('Location: ../php/Gestion.php');
-        exit;
-    } catch (PDOException $e) {
-        $db->rollBack();
-        echo "Erreur : " . $e->getMessage();
-    }
+    header("Location: ../php/Gestion.php");
+    exit;
 }
 ?>
 
-<!DOCTYPE HTML>
-<html lang="fr">
+<!DOCTYPE html>
+<html>
 <head>
+    <title>Modifier un Joueur</title>
     <link rel="stylesheet" href="../css/modifier.css">
-    <meta charset="utf-8" />
-    <title>Modifier Joueur</title>
 </head>
 <body>
     <h1>Modifier les informations du joueur</h1>
     <form method="POST">
-        <input type="hidden" name="id" value="<?= htmlspecialchars($joueur['Numero_Licence'] ?? '') ?>">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($joueur['Nom']) ?>" required>
 
-        <label>Nom :</label>
-        <input type="text" name="nom" value="<?= htmlspecialchars($joueur['Nom'] ?? '') ?>" required><br>
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($joueur['Prenom']) ?>" required>
 
-        <label>Prénom :</label>
-        <input type="text" name="prenom" value="<?= htmlspecialchars($joueur['Prenom'] ?? '') ?>" required><br>
+        <label for="date_naissance">Date de Naissance :</label>
+        <input type="date" id="date_naissance" name="date_naissance" value="<?= htmlspecialchars($joueur['Date_De_Naissance']) ?>" required>
 
-        <label>Date de Naissance :</label>
-        <input type="date" name="date_naissance" value="<?= htmlspecialchars($joueur['Date_De_Naissance'] ?? '') ?>" required><br>
+        <label for="taille">Taille (cm) :</label>
+        <input type="number" id="taille" name="taille" value="<?= htmlspecialchars($joueur['Taille']) ?>" required>
 
-        <label>Taille (cm) :</label>
-        <input type="number" name="taille" value="<?= htmlspecialchars($joueur['Taille'] ?? '') ?>" required><br>
+        <label for="poids">Poids (kg) :</label>
+        <input type="number" id="poids" name="poids" value="<?= htmlspecialchars($joueur['Poids']) ?>" required>
 
-        <label>Poids (kg) :</label>
-        <input type="number" name="poids" id="poids" value="<?= htmlspecialchars($joueur['Poids'] ?? '') ?>" required><br>
+        <label for="poste">Poste Préferé:</label>
+        <select id="poste" name="poste" required>
+            <option value="Ailier" <?= $joueur['Poste_Joueur'] == 'Ailier' ? 'selected' : '' ?>>Ailier</option>
+            <option value="Meneur" <?= $joueur['Poste_Joueur'] == 'Meneur' ? 'selected' : '' ?>>Meneur</option>
+            <option value="Arrière" <?= $joueur['Poste_Joueur'] == 'Arrière' ? 'selected' : '' ?>>Arrière</option>
+            <option value="Ailier Fort" <?= $joueur['Poste_Joueur'] == 'Ailier Fort' ? 'selected' : '' ?>>Ailier Fort</option>
+            <option value="Pivot" <?= $joueur['Poste_Joueur'] == 'Pivot' ? 'selected' : '' ?>>Pivot</option>
+        </select>
 
-        <label>Statut :</label>
-        <select name="statut" required>
-            <?php foreach ($statuts as $statut): ?>
-                <option value="<?= htmlspecialchars($statut['Id_Statut']) ?>" <?= $statut['Id_Statut'] === $joueur['Id_Statut'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($statut['Libelle']) ?>
-                </option>
-            <?php endforeach; ?>
-        </select><br>
+        <label for="statut">Statut :</label>
+        <select id="statut" name="Id_Statut" required>
+            <option value="STAT001" <?= $joueur['Id_Statut'] == 'STAT001' ? 'selected' : '' ?>>Actif</option>
+            <option value="STAT002" <?= $joueur['Id_Statut'] == 'STAT002' ? 'selected' : '' ?>>Blessé</option>
+            <option value="STAT003" <?= $joueur['Id_Statut'] == 'STAT003' ? 'selected' : '' ?>>Suspendu</option>
+            <option value="STAT004" <?= $joueur['Id_Statut'] == 'STAT004' ? 'selected' : '' ?>>Absent</option>
+        </select>
 
-        <label>Position :</label>
-        <select name="position" required>
-            <option value="Ailier" <?= $position === 'Ailier' ? 'selected' : '' ?>>Ailier</option>
-            <option value="Meneur" <?= $position === 'Meneur' ? 'selected' : '' ?>>Meneur</option>
-            <option value="Arrière" <?= $position === 'Arrière' ? 'selected' : '' ?>>Arrière</option>
-            <option value="Ailier Fort" <?= $position === 'Ailier Fort' ? 'selected' : '' ?>>Ailier Fort</option>
-            <option value="Pivot" <?= $position === 'Pivot' ? 'selected' : '' ?>>Pivot</option>
-        </select><br>
-
-        <label>Commentaire :</label>
-        <textarea name="commentaire" rows="4" cols="50" required><?= htmlspecialchars($joueur['Commentaires'] ?? '') ?></textarea><br>
-
-        <button type="submit">Enregistrer</button>
+        <button type="submit">Mettre à jour</button>
     </form>
 </body>
 </html>

@@ -114,6 +114,12 @@ function validerFormulaire() {
         alert("Le numéro de licence doit commencer par 'J'.");
         return false; 
     }
+
+    if (!poste) {
+        alert("Veuillez sélectionner un poste.");
+        return false;
+    }
+    
     return true; 
 }
 

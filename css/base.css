@@ -36,6 +36,7 @@ table {
     border-spacing: 10px; 
     margin-bottom: 20px; 
     border: 1px solid #ddd; 
+    padding: 25px;
 }
 
 table th, table td {
