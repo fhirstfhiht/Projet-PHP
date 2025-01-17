@@ -5,11 +5,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dateHeure = $_POST['date_heure'];
     $adversaire = $_POST['adversaire'];
     $lieu = $_POST['lieu'];
-    $scoreEquipe = $_POST['score_equipe'];
-    $scoreAdversaire = $_POST['score_adversaire'];
+    $scoreEquipe = (int) $_POST['score_equipe'];
+    $scoreAdversaire = (int) $_POST['score_adversaire'];
 
     try {
         $db = connectDB();
+
+        // Calculer les colonnes Victoire et Égalité
+        $victoire = 0;
+        $egalite = 0;
+
+        if ($scoreEquipe > $scoreAdversaire) {
+            $victoire = 1;
+        } elseif ($scoreEquipe == $scoreAdversaire) {
+            $egalite = 1;
+        }
 
         // Récupérer le dernier ID inséré
         $lastIdQuery = "SELECT Id_Match FROM Matchs ORDER BY Id_Match DESC LIMIT 1";
@@ -24,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $newId = 'M001';
         }
 
-        // Insérer le nouveau match
-        $insertQuery = "INSERT INTO Matchs (Id_Match, Date_Heure_Match, Lieu, Adversaire, Score_Equipe, Score_Adversaire) 
-                        VALUES (:id_match, :date_heure, :lieu, :adversaire, :score_equipe, :score_adversaire)";
+        // Insérer le nouveau match avec les colonnes Victoire et Égalité
+        $insertQuery = "INSERT INTO Matchs (Id_Match, Date_Heure_Match, Lieu, Adversaire, Score_Equipe, Score_Adversaire, Victoire, Egalite) 
+                        VALUES (:id_match, :date_heure, :lieu, :adversaire, :score_equipe, :score_adversaire, :victoire, :egalite)";
         $stmt = $db->prepare($insertQuery);
         $stmt->execute([
             ':id_match' => $newId,
@@ -35,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':adversaire' => $adversaire,
             ':score_equipe' => $scoreEquipe,
             ':score_adversaire' => $scoreAdversaire,
+            ':victoire' => $victoire,
+            ':egalite' => $egalite,
         ]);
 
         header('Location: ../php/Liste_Match.php?message=added');
