@@ -1,17 +1,13 @@
+
 <?php
 include_once '../SQL/db_connection.php';
+include_once '../SQL/db_Feuilles_de_Matchs.php';
 
 $pdo = connectDB();
 
-// Récupérer les matchs disponibles
-$matchQuery = $pdo->prepare("SELECT Id_Match, Date_Heure_Match, Adversaire FROM matchs WHERE Date_Heure_Match > NOW()");
-$matchQuery->execute();
-$matchs = $matchQuery->fetchAll();
-
-// Récupérer les joueurs actifs
-$joueurQuery = $pdo->prepare("SELECT Numero_Licence, Nom, Prenom, Poste_Joueur FROM joueurs WHERE Id_Statut = 'STAT001'");
-$joueurQuery->execute();
-$joueurs = $joueurQuery->fetchAll();
+// Use centralized functions to fetch data
+$matchs = getMatchsavenir($pdo);
+$joueurs = getJoueursActifs($pdo);
 ?>
 
 <!DOCTYPE html>

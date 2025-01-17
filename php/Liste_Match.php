@@ -1,11 +1,4 @@
 <?php
-require_once '../SQL/db_connection.php';
-
-$db = connectDB();
-
-$query = "SELECT Id_Match, Date_Heure_Match, Adversaire, Lieu, Score_equipe, Score_adversaire FROM Matchs";
-$stmt = $db->query($query);
-
 $currentDateTime = new DateTime();
 ?>
 <!DOCTYPE html>
@@ -30,9 +23,8 @@ $currentDateTime = new DateTime();
     <h1>Liste des Matchs</h1>
 
     <main>
-        
-
         <?php
+        // Gestion des éventuels messages passés en GET
         if (isset($_GET['message'])) {
             if ($_GET['message'] === 'success') {
                 echo "<p style='color: green;'>Le match a été supprimé avec succès.</p>";
@@ -55,39 +47,13 @@ $currentDateTime = new DateTime();
                 </tr>
             </thead>
             <tbody>
-                <?php
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['Date_Heure_Match']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['Adversaire']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['Lieu']) . "</td>";
-
-                    $matchDateTime = new DateTime($row['Date_Heure_Match']);
-                    if ($matchDateTime > $currentDateTime) {
-                        echo "<td>A définir</td>";
-                    } else {
-                        $result = (!is_null($row['Score_equipe']) && !is_null($row['Score_adversaire'])) ?
-                            (($row['Score_equipe'] > $row['Score_adversaire']) ? 'Victoire' : (($row['Score_equipe'] === $row['Score_adversaire']) ? 'Égalité' : 'Défaite')) : 'Non défini';
-                        echo "<td>" . htmlspecialchars($result) . "</td>";
-                    }
-
-                    echo "<td>";
-                    if ($matchDateTime > $currentDateTime) {
-                        echo "<a href='../ScriptsPhp/modifier_match.php?id=" . htmlspecialchars($row['Id_Match']) . "'>Modifier</a> | ";
-                    }
-                     
-                    echo "<a href='javascript:void(0)' onclick=\"confirmerSuppression('" . htmlspecialchars($row['Id_Match']) . "')\">Supprimer</a>";
-                    echo "</td>";
-                    echo "</tr>";
-                }
-                ?>
+                <?php include('../SQL/db_Liste_Match.php'); ?>
             </tbody>
         </table>
 
         <div class="centrer" >
             <button class="btn" onclick="afficherPopupAjouterMatch()">Ajouter un Match</button>
         </div>
-        
     </main>
 
     <script src="../js/Liste_Match.js"></script>

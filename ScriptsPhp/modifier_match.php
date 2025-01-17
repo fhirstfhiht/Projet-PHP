@@ -1,48 +1,34 @@
 <?php
-require_once '../SQL/db_connection.php';
+// On inclut le fichier qui contient nos fonctions SQL
+require_once '../SQL/db_modifier_match.php';
 
-$db = connectDB();
+// On récupère la connexion
+$db = getDBConnection();
 
 if (isset($_GET['id'])) {
     $idMatch = $_GET['id'];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // On récupère les valeurs du formulaire
         $dateHeure = $_POST['date_heure'];
         $adversaire = $_POST['adversaire'];
         $lieu = $_POST['lieu'];
         $scoreEquipe = $_POST['score_equipe'];
         $scoreAdversaire = $_POST['score_adversaire'];
 
-        try {
-            $updateQuery = "UPDATE Matchs 
-                            SET Date_Heure_Match = :date_heure, 
-                                Lieu = :lieu, 
-                                Adversaire = :adversaire, 
-                                Score_Equipe = :score_equipe, 
-                                Score_Adversaire = :score_adversaire
-                            WHERE Id_Match = :id";
-            $stmt = $db->prepare($updateQuery);
-            $stmt->execute([
-                ':date_heure' => $dateHeure,
-                ':lieu' => $lieu,
-                ':adversaire' => $adversaire,
-                ':score_equipe' => $scoreEquipe,
-                ':score_adversaire' => $scoreAdversaire,
-                ':id' => $idMatch
-            ]);
+        // On met à jour le match via la fonction
+        updateMatch($db, $idMatch, $dateHeure, $adversaire, $lieu, $scoreEquipe, $scoreAdversaire);
 
-            header('Location: ../php/Liste_Match.php?message=updated');
-            exit;
-        } catch (PDOException $e) {
-            echo "Erreur lors de la modification : " . $e->getMessage();
-        }
+        // Si la fonction updateMatch ne fait pas de redirection,
+        // vous pouvez rediriger après coup :
+        // header('Location: ../php/Liste_Match.php?message=updated');
+        // exit;
     } else {
-        $query = "SELECT * FROM Matchs WHERE Id_Match = :id";
-        $stmt = $db->prepare($query);
-        $stmt->execute([':id' => $idMatch]);
-        $match = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Sinon, on veut simplement récupérer les infos du match pour pré-remplir le formulaire
+        $match = getMatchData($db, $idMatch);
 
         if ($match) {
+            // On affiche le formulaire avec les données existantes
             ?>
             <!DOCTYPE html>
             <html lang="fr">
