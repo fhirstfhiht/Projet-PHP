@@ -70,14 +70,14 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistiques des Joueurs et Matchs</title>
+    <title>Statistiques des Matchs et Joueurs </title>
     <link rel="stylesheet" href="../css/Statistique.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <?php include('header.php'); ?>
 <body>
-    <h1 class="centrer">Statistiques des Joueurs et Matchs</h1>
+    <h1 class="centrer">Statistiques des Matchs et Joueurs</h1>
 
     <section class="general-stats">
         <h2>Statistiques des Matchs</h2>

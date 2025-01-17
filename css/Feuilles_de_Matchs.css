@@ -18,8 +18,10 @@ form label {
 
 /* Style pour le select */
 form select {
-    width: 100%; /* Prend toute la largeur du conteneur */
-    max-width: 400px; /* Limite la largeur pour une meilleure lisibilité */
+    width: 100%;
+    /* Prend toute la largeur du conteneur */
+    max-width: 400px;
+    /* Limite la largeur pour une meilleure lisibilité */
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -31,9 +33,11 @@ form select {
 
 /* Focus sur le champ select */
 form select:focus {
-    border-color: #4CAF50; /* Bordure verte au focus */
+    border-color: #4CAF50;
+    /* Bordure verte au focus */
     outline: none;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Effet lumineux */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    /* Effet lumineux */
 }
 
 /* Style pour les options */
@@ -43,31 +47,31 @@ form select option {
 }
 
 .btn {
-    background: linear-gradient(90deg, #ff921e, #ffbe0c); 
+    background: linear-gradient(90deg, #ff921e, #ffbe0c);
     border: none;
-    border-radius: 8px; 
-    color: white; 
-    font-size: 16px; 
-    font-weight: bold; 
-    padding: 12px 20px; 
-    cursor: pointer; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    transition: transform 0.2s, box-shadow 0.2s, background 0.3s; 
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
     text-align: center;
 }
 
 .btn:hover {
-    background: linear-gradient(90deg, #ff921e, #ffbe0c); 
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
-    transform: translateY(-2px); 
+    background: linear-gradient(90deg, #ff921e, #ffbe0c);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
 }
 
 .btn:active {
-    background: linear-gradient(90deg, #ff921e, #ffbe0c); 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    transform: translateY(1px); 
+    background: linear-gradient(90deg, #ff921e, #ffbe0c);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(1px);
 }
 
-.centrer{
+.centrer {
     text-align: center;
 }
