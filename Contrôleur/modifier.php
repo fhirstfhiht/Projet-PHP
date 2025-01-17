@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     updateJoueur($pdo, $id, $joueurData);
 
     // 6) Rediriger vers la page de gestion
-    header("Location: ../php/Gestion.php");
+    header("Location: ../VUE/php/Gestion.php");
     exit;
 }
 

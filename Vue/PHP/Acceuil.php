@@ -1,5 +1,12 @@
 <?php
 require_once '../../Modéle/db_Accueil.php'; // Inclure le fichier pour récupérer les données du prochain match
+session_start();
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    // Si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion
+    header('Location: ../../php/Connexion.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -17,9 +24,9 @@ require_once '../../Modéle/db_Accueil.php'; // Inclure le fichier pour récupé
     <div class="background-image"></div>
 		<main>
         
-			<h1>
-				Accueil 
-			</h1>
+		<section class="accueil-section">
+			<h2 class="accueil-title">Accueil</h2>
+		</section>
 			<div>
 			<section id="match-a-venir">
 				<h2>Prochain Match</h2>
@@ -33,15 +40,15 @@ require_once '../../Modéle/db_Accueil.php'; // Inclure le fichier pour récupé
 			</section>
 				<section>
 					<h2>
-						Actu Basket
+						Actualité Basket
 					</h2>
 					<div>
 						<article>
 							<h2>
-							Record de points lors de Real Madrid - Maccabi Tel-Aviv
+							Le 2 mars 1962 à Hershey (Pennsylvanie)
 							</h2>
 							<p>
-							La rencontre entre le Real Madrid et le Maccabi Tel-Aviv jouée ce mardi a battu des records. Les deux équipes ont inscrit un total de 229 points (116-113), un record historique en Euroligue dans un match sans prolongation.
+							Wilt Chamberlain a établi le record de points en un match de la NBA en marquant 100 points pour les Warriors de Philadelphie lors d'une victoire 169-147 contre les Knicks de New York.
 							</p>
 						</article>
 						<article>

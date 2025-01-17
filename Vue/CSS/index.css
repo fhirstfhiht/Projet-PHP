@@ -1,53 +1,151 @@
-/* Global styles */
-body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-	line-height: 1.6;
+/******************************************************
+  1. RESET & BASE
+******************************************************/
+
+/* Retrait des marges et des espacements par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Styles de base pour le corps du document */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6; /* Améliore la lisibilité */
+    background-color: #ffffff; /* Couleur de fond par défaut */
+    color: #333; /* Couleur principale du texte */
+}
+
+/******************************************************
+  2. IMAGES DE FOND
+******************************************************/
 
 .background-image {
-	background-image: url('../Images/Image_back.png');
-	height: 300px;
-	background-position: center;
-	background-size: cover;
-	position: relative;
-	width: 100%;
-	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(255, 255, 255) 100%), url('../Images/Image_back.png');
+    /* Image de fond en haut de la page */
+    background-image: url('../Images/Image_back.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    /* Superposition d’un dégradé pour assombrir/éclaircir l’image */
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgb(255, 255, 255) 100%
+    ), 
+    url('../Images/Image_back.png');
+
+    /* Dimensions de la zone d’image */
+    width: 100%;
+    height: 300px;
+    position: relative;
 }
 
-
-
+/******************************************************
+  3. STRUCTURE GLOBALE
+******************************************************/
 
 main {
-	padding: 20px;
+    /* Espacement interne pour le contenu principal */
+    padding: 20px;
 }
 
-h1,
-h2 {
-	color: #333;
+/* Titres principaux (h1) et secondaires (h2) */
+h1, h2 {
+    color: #333;
+    margin-bottom: 10px;
 }
+
+/******************************************************
+  4. SECTIONS ET ARTICLES
+******************************************************/
 
 section {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 section p {
-	margin: 10px 0;
+    margin: 10px 0;
 }
 
+/* Styles pour les articles d’actualité basket */
 article {
-	border: 1px solid #ddd;
-	padding: 10px;
-	margin-bottom: 10px;
-	border-radius: 5px;
-	background-color: #f9f9f9;
+    background-color: #f9f9f9;  /* Fond légèrement gris */
+    border: 1px solid #ddd;     /* Bordure discrète */
+    border-radius: 5px;         /* Angles arrondis */
+    padding: 10px;              /* Espacement interne */
+    margin-bottom: 10px;        /* Espace entre articles */
 }
+
+/******************************************************
+  5. ASIDE (BLOC LATÉRAL)
+******************************************************/
 
 aside {
-	margin-top: 20px;
-	padding: 10px;
-	background-color: #f4f4f4;
-	border-left: 5px solid #ccc;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f4f4f4;  /* Fond gris clair */
+    border-left: 5px solid #ccc; /* Barre verticale à gauche */
+}
+
+/******************************************************
+  6. SECTION « Prochain Match » (#match-a-venir)
+******************************************************/
+
+/* Conteneur principal */
+#match-a-venir {
+    background-color: #f9f9f9;  /* Couleur de fond */
+    border: 1px solid #ddd;     /* Bordure légère */
+    border-radius: 4px;         /* Coins arrondis */
+    padding: 1.5rem;            /* Espace interne */
+    max-width: 600px;           /* Largeur max pour centrer le contenu */
+    margin: 2rem auto;          /* Centre horizontalement et ajoute de l’espace vertical */
+}
+
+/* Titre dans la section « Prochain Match » */
+#match-a-venir h2 {
+    margin-top: 0;              /* Retire la marge haute par défaut du H2 */
+    margin-bottom: 1rem;
+    font-size: 1.5rem;          /* Agrandit un peu le texte */
+    color: #333;
+    text-align: center;         /* Centrer le titre */
+}
+
+/* Paragraphes à l’intérieur de « Prochain Match » */
+#match-a-venir p {
+    margin: 0.5rem 0;           /* Espace vertical entre paragraphes */
+    font-size: 1rem;
+    color: #555;                /* Couleur de texte un peu plus claire */
+}
+
+/* Met en évidence le label (Date et Heure, Lieu, Adversaire) */
+#match-a-venir p strong {
+    font-weight: 600;
+    color: #000;
+}
+
+
+/* Classe pour la section d’accueil */
+.accueil-section {
+    /* Espacement, bordures, couleur de fond, etc. */
+    background-color: #f9f9f9; 
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1.5rem;
+    max-width: 800px;           /* Largeur max */
+    margin: 2rem auto;          /* Centre horizontalement la section */
+}
+
+/* Titre de la section Accueil */
+.accueil-title {
+    text-align: center;         /* Centre le texte horizontalement */
+    font-size: 2rem;            /* Rend le titre plus grand */
+    color: #333;                /* Couleur du texte */
+    margin-bottom: 1rem;        /* Espace en dessous du titre */
+    /* Vous pouvez ajouter d'autres effets, par exemple: 
+       text-transform: uppercase;
+       font-weight: bold;
+       letter-spacing: 1px;
+    */
 }

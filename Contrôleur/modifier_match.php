@@ -1,4 +1,13 @@
 <?php
+session_start();
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    // Si l'utilisateur n'est pas connecté, on le redirige vers la page de connexion
+    header('Location: ../../php/Connexion.php');
+    exit;
+}
+?>
+<?php
 // On inclut le fichier qui contient nos fonctions SQL
 require_once '../Modéle/db_modifier_match.php';
 
@@ -30,51 +39,51 @@ if (isset($_GET['id'])) {
         if ($match) {
             // On affiche le formulaire avec les données existantes
             ?>
-            <!DOCTYPE html>
-            <html lang="fr">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Modifier Match</title>
-                <link rel="stylesheet" href="/Projet_php/Vue/css/Base.css">
-                <link rel="stylesheet" href="/Projet_php/Vue/css/index.css">
-                <link rel="stylesheet" href="/Projet_php/Vue/css/modifier_match.css">
-            </head>
-            <body>
-                <h1>Modifier le Match</h1>
-                <main>
-                    <form action="modifier_match.php?id=<?= htmlspecialchars($idMatch) ?>" method="POST">
-                        <label for="date_heure">Date et Heure :</label>
-                        <input type="datetime-local" name="date_heure" id="date_heure" 
-                               value="<?= htmlspecialchars($match['Date_Heure_Match']) ?>" required><br>
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modifier Match</title>
+        <link rel="stylesheet" href="/Projet_php/Vue/css/Base.css">
+        <link rel="stylesheet" href="/Projet_php/Vue/css/index.css">
+        <link rel="stylesheet" href="/Projet_php/Vue/css/modifier_match.css">
+    </head>
+    <body>
+        <h1>Modifier le Match</h1>
+        <main>
+            <form action="modifier_match.php?id=<?= htmlspecialchars($idMatch) ?>" method="POST">
+                <label for="date_heure">Date et Heure :</label>
+                <input type="datetime-local" name="date_heure" id="date_heure" 
+                        value="<?= htmlspecialchars($match['Date_Heure_Match']) ?>" required><br>
 
-                        <label for="adversaire">Adversaire :</label>
-                        <input type="text" name="adversaire" id="adversaire" 
-                               value="<?= htmlspecialchars($match['Adversaire']) ?>" required><br>
+                <label for="adversaire">Adversaire :</label>
+                <input type="text" name="adversaire" id="adversaire" 
+                        value="<?= htmlspecialchars($match['Adversaire']) ?>" required><br>
 
-                        <label for="lieu">Lieu :</label>
-                        <input type="text" name="lieu" id="lieu" 
-                               value="<?= htmlspecialchars($match['Lieu']) ?>" required><br>
+                <label for="lieu">Lieu :</label>
+                <input type="text" name="lieu" id="lieu" 
+                        value="<?= htmlspecialchars($match['Lieu']) ?>" required><br>
 
-                        <label for="score_equipe">Score Équipe :</label>
-                        <input type="number" name="score_equipe" id="score_equipe" min="0" 
-                               value="<?= htmlspecialchars($match['Score_Equipe']) ?>" required><br>
+                <label for="score_equipe">Score Équipe :</label>
+                <input type="number" name="score_equipe" id="score_equipe" min="0" 
+                        value="<?= htmlspecialchars($match['Score_Equipe']) ?>" required><br>
 
-                        <label for="score_adversaire">Score Adversaire :</label>
-                        <input type="number" name="score_adversaire" id="score_adversaire" min="0" 
-                               value="<?= htmlspecialchars($match['Score_Adversaire']) ?>" required><br>
+                <label for="score_adversaire">Score Adversaire :</label>
+                <input type="number" name="score_adversaire" id="score_adversaire" min="0" 
+                        value="<?= htmlspecialchars($match['Score_Adversaire']) ?>" required><br>
 
-                        <button type="submit">Enregistrer les modifications</button>
-                    </form>
-                </main>
-            </body>
-            </html>
-            <?php
-        } else {
-            echo "<p>Match introuvable.</p>";
-        }
+                <button type="submit">Enregistrer les modifications</button>
+            </form>
+        </main>
+    </body>
+</html>
+<?php
+    } else {
+        echo "<p>Match introuvable.</p>";
     }
-} else {
+    }
+    } else {
     echo "<p>ID du match non spécifié.</p>";
-}
+    }
 ?>
