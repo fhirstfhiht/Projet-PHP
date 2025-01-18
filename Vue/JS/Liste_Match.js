@@ -10,7 +10,7 @@ function afficherPopupAjouterMatch() {
         const popup = document.createElement('div');
         popup.className = 'popup';
         popup.innerHTML = `
-            <form action="/Projet_php/Contrôleur/ajouter_match.php" method="POST">
+            <form action="../../Controleur/ajouter_match.php" method="POST">
                 <h2>Ajouter un Match</h2>
                 <label for="date_heure">Date et Heure :</label>
                 <input type="datetime-local" name="date_heure" id="date_heure" required>
@@ -48,6 +48,6 @@ function fermerPopup() {
 // Confirme la suppression d'un match
 function confirmerSuppression(idMatch) {
     if (confirm("Êtes-vous sûr de vouloir supprimer ce match ?")) {
-        window.location.href = `../../Contrôleur/supprimer_match.php?id=${idMatch}`;
+        window.location.href = `../../Controleur/supprimer_match.php?id=${idMatch}`;
     }
 }

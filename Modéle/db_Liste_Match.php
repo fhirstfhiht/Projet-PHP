@@ -39,7 +39,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     echo "<td>";
     // On n'affiche "Modifier" que si le match est futur
     if ($matchDateTime > $currentDateTime) {
-        echo "<a href='/Projet_php/Contrôleur/modifier_match.php?id=" . htmlspecialchars($row['Id_Match']) . "'>Modifier</a> | ";
+        echo "<a href='../../Controleur/modifier_match.php?id=" . htmlspecialchars($row['Id_Match']) . "'>Modifier</a> | ";
     }
     echo "<a href='javascript:void(0)' onclick=\"confirmerSuppression('" . htmlspecialchars($row['Id_Match']) . "')\">Supprimer</a>";
     echo "</td>";

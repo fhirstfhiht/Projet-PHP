@@ -25,7 +25,7 @@ $joueurs = getJoueursActifs($pdo);
 		</section>
 
 
-    <form id="feuilleDeMatchForm" action="../../Contrôleur/enregistrer_feuille.php" method="POST">
+    <form id="feuilleDeMatchForm" action="../../Controleur/enregistrer_feuille.php" method="POST">
         <h2 for="match">Match :</h2>
         <select id="match" name="Id_Match" required>
             <option value="">-- Sélectionnez un match --</option>

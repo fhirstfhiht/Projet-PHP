@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.target.classList.contains('btn-modifier')) {
             console.log("Bouton Modifier cliqué");
             const joueurId = event.target.getAttribute('data-id');
-            window.location.href = `../../Contrôleur/modifier.php?id=${joueurId}`;
+            window.location.href = `../../Controleur/modifier.php?id=${joueurId}`;
         }
     });
 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("ID du joueur à supprimer :", joueurId);
 
             if (confirm('Êtes-vous sûr de vouloir supprimer ce joueur ?')) {
-                fetch(`../../Contrôleur/supprimer.php?id=${joueurId}`)
+                fetch(`../../Controleur/supprimer.php?id=${joueurId}`)
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
@@ -61,7 +61,7 @@ function afficherPopupAjouterJoueur() {
 
     popupContent.style.display = "block"; 
     popupContent.innerHTML = `
-        <form action="../../Contrôleur/ajouter_Joueur.php" method="POST" onsubmit="return validerFormulaire()">
+        <form action="../../Controleur/ajouter_Joueur.php" method="POST" onsubmit="return validerFormulaire()">
             <h2>Ajouter un Joueur</h2>
             
             <label for="nom">Nom :</label>
