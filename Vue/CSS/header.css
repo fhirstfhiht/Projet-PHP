@@ -1,74 +1,119 @@
-/* Header styles */
+/* ========================
+   1. Styles de base (existant)
+   ======================== */
+
+/* ... votre CSS existant (header, nav, etc.) ... */
+
 header {
-	display: flex;
-	align-items: center;
-	padding: 10px 20px;
-	background-color: #0F1C3F;
-	font-size: 30px;
-	font-family: Helvetica;
-	justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #0F1C3F;
+    font-size: 30px;
+    font-family: Helvetica;
+    justify-content: space-between;
 }
 
 header img {
-	height: 125px;
-}
-
-nav ul li a.active {
-	background-color: #EA5E07;
-	border-radius: 8px;
+    height: 125px;
 }
 
 .menu-container {
-	display: flex;
-	justify-content: center;
-	flex-grow: 1;
-}
-
-nav {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0;
-	padding: 0;
-	list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
 }
 
 nav ul {
-	display: flex;
-	justify-content: center;
-	margin: 0;
-	padding: 0;
-	list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 nav ul li {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
+    position: relative; /* Nécessaire pour le positionnement du dropdown */
 }
 
 nav ul li a {
-	padding: 0px 8px;
-	color: #000000;
-	text-decoration: none;
-	display: inline-block;
-	border-radius: 8px;
-	transition: background-color 0.3s ease;
-	background-color: #ffffff;
-	margin: 0 10px;
+    padding: 0px 8px;
+    color: #000000;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    background-color: #ffffff;
+    margin: 0 10px;
 }
 
 nav ul li a:hover {
-	background-color: #EA5E07;
-	border-radius: 8px;
+    background-color: #EA5E07;
+    border-radius: 8px;
+}
+
+nav ul li a.active {
+    background-color: #EA5E07;
+    border-radius: 8px;
 }
 
 .connexion {
-	margin-left: auto;
-	color: #ffffff;
-	text-decoration: none;
-	border-radius: 8px;
+    margin-left: auto;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
 }
 
 .connexion:hover {
-	color: #EA5E07;
+    color: #EA5E07;
+}
+
+/* ========================
+   2. Dropdown : sous-menus
+   ======================== */
+
+/* Le sous-menu est masqué par défaut */
+.dropdown-menu {
+    display: none;         /* Masqué tant qu’on ne survole pas le parent */
+    position: absolute;    /* Positionné relativement au parent .dropdown */
+    top: 100%;             /* Aligne le haut du menu déroulant juste sous le lien parent */
+    left: 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 6px;
+    min-width: 120px;      /* Largeur minimale du sous-menu */
+    padding: 3px 0;        /* Espacement vertical interne */
+    z-index: 9999;         /* Au-dessus du contenu */
+}
+
+/* Chaque élément du sous-menu */
+.dropdown-menu li {
+    display: block; /* On passe chaque élément en bloc vertical */
+    margin: 0;      /* Reset marge pour le sous-menu */
+}
+
+/* Les liens dans le sous-menu */
+.dropdown-menu li a {
+	font-size: 1.2rem;
+    margin: 0;               /* Pas de marge horizontale */
+    padding: 8px 16px;       /* Élargit la zone cliquable */
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 0;        /* Retire le border-radius si besoin */
+    display: block;          /* Pour prendre toute la largeur */
+}
+
+/* Au survol du lien dans le sous-menu, on applique un style */
+.dropdown-menu li a:hover {
+    background-color: #EA5E07;
+    color: #ffffff;
+    border-radius: 0;
+}
+
+/* Quand on survole le parent .dropdown, on affiche le sous-menu */
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
