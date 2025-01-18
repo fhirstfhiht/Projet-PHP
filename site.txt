@@ -1,12 +1,2 @@
 
-Control panel username:	b33_38127840
-Control panel password:	$iutinfo
-Control panel URL:	cpanel.byethost33.com
-MySQL username	b33_38127840
-MySQL password:	$iutinfo
-MySQL hostname:	sql103.byethost33.com
-FTP username:	b33_38127840
-FTP password:	$iutinfo
-FTP host name:	ftp.byethost33.com
-Your Website URL:	http://projetissam.byethost33.com
  	 
