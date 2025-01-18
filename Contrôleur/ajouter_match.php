@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Récupérer le dernier ID inséré
-        $lastIdQuery = "SELECT Id_Match FROM Matchs ORDER BY Id_Match DESC LIMIT 1";
+        $lastIdQuery = "SELECT Id_Match FROM matchs ORDER BY Id_Match DESC LIMIT 1";
         $lastIdStmt = $db->query($lastIdQuery);
         $lastId = $lastIdStmt->fetch(PDO::FETCH_ASSOC);
 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Insérer le nouveau match avec les colonnes Victoire et Égalité
-        $insertQuery = "INSERT INTO Matchs (Id_Match, Date_Heure_Match, Lieu, Adversaire, Score_Equipe, Score_Adversaire, Victoire, Egalite) 
+        $insertQuery = "INSERT INTO matchs (Id_Match, Date_Heure_Match, Lieu, Adversaire, Score_Equipe, Score_Adversaire, Victoire, Egalite) 
                         VALUES (:id_match, :date_heure, :lieu, :adversaire, :score_equipe, :score_adversaire, :victoire, :egalite)";
         $stmt = $db->prepare($insertQuery);
         $stmt->execute([

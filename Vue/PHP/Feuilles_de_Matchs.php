@@ -20,7 +20,10 @@ $joueurs = getJoueursActifs($pdo);
 </head>
 <?php include('header.php'); ?>
 <body>
-    <h1 class="centrer">Créer une Feuille de Match</h1>
+        <section class="section-page">
+			<h2 class="title-page">Créer une Feuille de Match</h2>
+		</section>
+
 
     <form id="feuilleDeMatchForm" action="../../Contrôleur/enregistrer_feuille.php" method="POST">
         <h2 for="match">Match :</h2>

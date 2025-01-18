@@ -48,6 +48,6 @@ function fermerPopup() {
 // Confirme la suppression d'un match
 function confirmerSuppression(idMatch) {
     if (confirm("Êtes-vous sûr de vouloir supprimer ce match ?")) {
-        window.location.href = `/Projet_php/Contrôleur/supprimer_match.php?id=${idMatch}`;
+        window.location.href = `../../Contrôleur/supprimer_match.php?id=${idMatch}`;
     }
 }

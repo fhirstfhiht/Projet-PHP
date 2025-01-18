@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id'])) {
 <!DOCTYPE HTML>
 
 <html lang="fr">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../CSS/index.css">
     <head>
         <meta charset="utf-8" />
         <title>Page d'accueil</title>
@@ -24,8 +24,8 @@ if (!isset($_SESSION['user_id'])) {
     <div class="background-image"></div>
 		<main>
         
-		<section class="accueil-section">
-			<h2 class="accueil-title">Accueil</h2>
+		<section class="section-page">
+			<h2 class="title-page">Accueil</h2>
 		</section>
 			<div>
 			<section id="match-a-venir">

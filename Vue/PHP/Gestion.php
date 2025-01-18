@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <title>Gestion</title>
-    <link rel="stylesheet" href="../css/Gestion.css">
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../CSS/Gestion.css">
+    <link rel="stylesheet" href="../CSS/base.css">
+    <link rel="stylesheet" href="../CSS/index.css">
 </head>
 <?php include('header.php'); ?>
 

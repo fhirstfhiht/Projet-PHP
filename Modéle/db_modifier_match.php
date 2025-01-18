@@ -14,7 +14,7 @@ function getDBConnection() {
  * @return array|false
  */
 function getMatchData(PDO $db, $idMatch) {
-    $query = "SELECT * FROM Matchs WHERE Id_Match = :id";
+    $query = "SELECT * FROM matchs WHERE Id_Match = :id";
     $stmt = $db->prepare($query);
     $stmt->execute([':id' => $idMatch]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -23,7 +23,7 @@ function getMatchData(PDO $db, $idMatch) {
 
 function updateMatch(PDO $db, $idMatch, $dateHeure, $adversaire, $lieu, $scoreEquipe, $scoreAdversaire) {
     try {
-        $updateQuery = "UPDATE Matchs 
+        $updateQuery = "UPDATE matchs 
                         SET Date_Heure_Match   = :date_heure, 
                             Lieu              = :lieu, 
                             Adversaire       = :adversaire, 

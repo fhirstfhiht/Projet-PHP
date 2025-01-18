@@ -8,12 +8,12 @@ if (isset($_GET['id'])) {
         $db = connectDB();
 
         // Supprimer les participations liées au match
-        $deleteParticipationQuery = "DELETE FROM Participer WHERE Id_Match = :id";
+        $deleteParticipationQuery = "DELETE FROM participer WHERE Id_Match = :id";
         $deleteParticipationStmt = $db->prepare($deleteParticipationQuery);
         $deleteParticipationStmt->execute([':id' => $idMatch]);
 
         // Supprimer le match
-        $deleteMatchQuery = "DELETE FROM Matchs WHERE Id_Match = :id";
+        $deleteMatchQuery = "DELETE FROM matchs WHERE Id_Match = :id";
         $deleteMatchStmt = $db->prepare($deleteMatchQuery);
         $deleteMatchStmt->execute([':id' => $idMatch]);
 

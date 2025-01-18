@@ -6,8 +6,8 @@ $db = connectDB();
 $query = "SELECT j.Numero_Licence, j.Nom, j.Prenom, j.Date_De_Naissance, j.Commentaires,
                  j.Poste_Joueur AS Poste,
                  s.Libelle AS Statut
-          FROM Joueurs j
-          LEFT JOIN Statut s ON j.Id_Statut = s.Id_Statut";
+          FROM joueurs j
+          LEFT JOIN statut s ON j.Id_Statut = s.Id_Statut";
 $stmt = $db->query($query);
 
 // Parcours des résultats et affichage des joueurs
@@ -20,7 +20,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     // Préparer les informations pour le pop-up
     $playerDetails = "
         <p>Âge : {$age} ans</p>
-        <p>Statut : " . htmlspecialchars($row['Statut'] ?? 'Non spécifié') . "</p>
+        <p>Statut : " . htmlspecialchars($row['statut'] ?? 'Non spécifié') . "</p>
         <p>Position : " . htmlspecialchars($row['Poste']) . "</p>
         <p>Commentaire : " . htmlspecialchars($row['Commentaires'] ?? 'Aucun commentaire') . "</p>
         <div class='popup-actions'>

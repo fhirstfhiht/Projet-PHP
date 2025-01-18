@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Redirection en cas de succès
-    header("Location: /Projet_php/Vue/php/Feuilles_de_Matchs.php?success=1");
+    header("Location: ../../Vue/php/Feuilles_de_Matchs.php?success=1");
     exit;
 } else {
     echo "<div class='error'>Aucune donnée soumise.</div>";

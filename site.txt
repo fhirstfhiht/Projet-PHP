@@ -1,20 +1,12 @@
-Please take a note of the details below these are needed to access your account.
-Your account is  now active.
 
-Control panel username:	b33_38121007
-Control panel password:	**********
+Control panel username:	b33_38127840
+Control panel password:	$iutinfo
 Control panel URL:	cpanel.byethost33.com
-MySQL username	b33_38121007
-MySQL password:	**********
-MySQL hostname:	sql308.byethost33.com
-FTP username:	b33_38121007
-FTP password:	**********
+MySQL username	b33_38127840
+MySQL password:	$iutinfo
+MySQL hostname:	sql103.byethost33.com
+FTP username:	b33_38127840
+FTP password:	$iutinfo
 FTP host name:	ftp.byethost33.com
-Your Website URL:	http://projet.byethost33.com
+Your Website URL:	http://projetissam.byethost33.com
  	 
-
-Thank you for choosing us to host your websites!
-
-byethost33.com hosting services 2025
-
- 

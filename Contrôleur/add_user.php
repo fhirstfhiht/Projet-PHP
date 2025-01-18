@@ -11,7 +11,7 @@ $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
 $userId = '3';  // Utilisez un ID unique pour l'utilisateur
 
 // Préparer la requête d'insertion
-$query = $pdo->prepare("INSERT INTO Utilisateur (Id_Utilisateur, Login, Password) VALUES (:id, :login, :password)");
+$query = $pdo->prepare("INSERT INTO utilisateur (Id_Utilisateur, Login, Password) VALUES (:id, :login, :password)");
 $query->execute([
     ':id' => $userId,
     ':login' => 'admin',  // Login de l'utilisateur

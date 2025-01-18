@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>Modifier un Joueur</title>
-    <link rel="stylesheet" href="/Projet_php/Vue/css/modifier.css">
+    <link rel="stylesheet" href="../../Vue/css/modifier.css">
 </head>
 <body>
     <h1>Modifier les informations du joueur</h1>

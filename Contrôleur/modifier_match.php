@@ -45,9 +45,9 @@ if (isset($_GET['id'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Modifier Match</title>
-        <link rel="stylesheet" href="/Projet_php/Vue/css/Base.css">
-        <link rel="stylesheet" href="/Projet_php/Vue/css/index.css">
-        <link rel="stylesheet" href="/Projet_php/Vue/css/modifier_match.css">
+        <link rel="stylesheet" href="../../Vue/css/Base.css">
+        <link rel="stylesheet" href="../../Vue/css/index.css">
+        <link rel="stylesheet" href="../../Vue/css/modifier_match.css">
     </head>
     <body>
         <h1>Modifier le Match</h1>

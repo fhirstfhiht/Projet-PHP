@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="fr">
-<link rel="stylesheet" href="../css/header.css">
+<link rel="stylesheet" href="../CSS/header.css">
 
 <header>
     <!-- Logo avec lien vers la page d'accueil -->

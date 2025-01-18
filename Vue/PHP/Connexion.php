@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../CSS/Connexion.css">
 </head>
 <body class="bodyConnexion">
-    <form class="login-form" action="/Projet_PHP/Contrôleur/process_login.php" method="post">
+    <form class="login-form" action="../../Contrôleur/process_login.php" method="post">
         <h2>Connexion</h2>
 
         <label for="username">Identifiant :</label>

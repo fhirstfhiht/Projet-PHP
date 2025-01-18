@@ -3,6 +3,7 @@
 .btn {
     background: linear-gradient(90deg, #ff921e, #ffbe0c); 
     border: none;
+    margin : 10px;
     border-radius: 8px; 
     color: white; 
     font-size: 16px; 

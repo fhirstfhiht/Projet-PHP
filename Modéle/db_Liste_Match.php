@@ -3,7 +3,7 @@ require_once 'db_connection.php';
 
 $db = connectDB();
 
-$query = "SELECT Id_Match, Date_Heure_Match, Adversaire, Lieu, Score_equipe, Score_adversaire FROM Matchs";
+$query = "SELECT Id_Match, Date_Heure_Match, Adversaire, Lieu, Score_equipe, Score_adversaire FROM matchs";
 $stmt = $db->query($query);
 
 $currentDateTime = new DateTime();

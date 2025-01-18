@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     try {
-        $sqlJoueurs = "INSERT INTO Joueurs (Numero_Licence, Nom, Prenom, Date_De_Naissance, Taille, Poids, Poste_Joueur, Id_Statut)
+        $sqlJoueurs = "INSERT INTO joueurs (Numero_Licence, Nom, Prenom, Date_De_Naissance, Taille, Poids, Poste_Joueur, Id_Statut)
                        VALUES (:numeroLicence, :nom, :prenom, :dateNaissance, :taille, :poids, :Poste_Joueur, :idStatut)";
         $stmtJoueurs = $pdo->prepare($sqlJoueurs);
 

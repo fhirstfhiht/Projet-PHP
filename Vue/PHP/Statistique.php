@@ -7,13 +7,15 @@ include_once '../../Modéle/db_statistique.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Statistiques des Matchs et Joueurs</title>
-    <link rel="stylesheet" href="../css/Statistique.css">
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../CSS/Statistique.css">
+    <link rel="stylesheet" href="../CSS/base.css">
+    <link rel="stylesheet" href="../CSS/index.css">
 </head>
 <?php include('header.php'); ?>
 <body>
-    <h1 class="centrer">Statistiques des Matchs et Joueurs</h1>
+        <section class="section-page">
+			<h2 class="title-page">Statistiques des Matchs et Joueurs</h2>
+		</section>
 
     <section class="general-stats">
         <h2>Statistiques des Matchs</h2>

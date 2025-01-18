@@ -9,7 +9,7 @@ try {
     $nextMatch = null;
 
     // Requête pour récupérer le prochain match
-    $query = "SELECT * FROM Matchs WHERE Date_Heure_Match > NOW() ORDER BY Date_Heure_Match ASC LIMIT 1";
+    $query = "SELECT * FROM matchs WHERE Date_Heure_Match > NOW() ORDER BY Date_Heure_Match ASC LIMIT 1";
     $stmt = $db->query($query);
     $nextMatch = $stmt->fetch(PDO::FETCH_ASSOC);
 

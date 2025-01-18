@@ -127,7 +127,7 @@ aside {
 
 
 /* Classe pour la section d’accueil */
-.accueil-section {
+.section-page {
     /* Espacement, bordures, couleur de fond, etc. */
     background-color: #f9f9f9; 
     border: 1px solid #ddd;
@@ -138,7 +138,7 @@ aside {
 }
 
 /* Titre de la section Accueil */
-.accueil-title {
+.title-page {
     text-align: center;         /* Centre le texte horizontalement */
     font-size: 2rem;            /* Rend le titre plus grand */
     color: #333;                /* Couleur du texte */

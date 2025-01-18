@@ -13,11 +13,11 @@ if (isset($_GET['id'])) {
         $db = connectDB();
 
         // Supprimer les références dans la table Participer
-        $stmt = $db->prepare("DELETE FROM Participer WHERE Numero_Licence = ?");
+        $stmt = $db->prepare("DELETE FROM participer WHERE Numero_Licence = ?");
         $stmt->execute([$id]);
 
         // Supprimer le joueur dans la table Joueurs
-        $stmt = $db->prepare("DELETE FROM Joueurs WHERE Numero_Licence = ?");
+        $stmt = $db->prepare("DELETE FROM joueurs WHERE Numero_Licence = ?");
         $success = $stmt->execute([$id]);
 
         echo json_encode(['success' => $success]);

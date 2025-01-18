@@ -7,9 +7,9 @@ $currentDateTime = new DateTime();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Matchs</title>
-    <link rel="stylesheet" href="../css/Base.css">
-    <link rel="stylesheet" href="../css/Liste_Match.css">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../CSS/base.css">
+    <link rel="stylesheet" href="../CSS/Liste_Match.css">
+    <link rel="stylesheet" href="../CSS/index.css">
 </head>
 <body>
     <?php include 'header.php'; ?>
@@ -20,7 +20,9 @@ $currentDateTime = new DateTime();
         </div>
     </section>
 
-    <h1>Liste des Matchs</h1>
+    <section class="section-page">
+		<h2 class="title-page">Liste des Matchs</h2>
+	</section>
 
     <main>
         <?php
@@ -35,7 +37,6 @@ $currentDateTime = new DateTime();
             }
         }
         ?>
-
         <table>
             <thead>
                 <tr>
