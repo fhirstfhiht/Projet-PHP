@@ -47,7 +47,7 @@
                     <a href="Feuilles_de_Matchs.php"
                        class="<?=
                            ( basename($_SERVER['PHP_SELF']) == 'Feuilles_de_Matchs.php'
-                             || basename($_SERVER['PHP_SELF']) == 'M_Feuilles_de_Matchs.php')
+                             || basename($_SERVER['PHP_SELF']) == 'modifier_feuille_de_match.php')
                              ? 'active'
                              : ''
                        ?>">
