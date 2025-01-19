@@ -27,7 +27,7 @@ table td {
 }
 
 table th {
-    background-color: #007bff;
+    background-color: #0F1C3F;
     color: white;
 }
 
@@ -44,7 +44,7 @@ table tr:hover {
 }
 
 .btn-primary {
-    background-color: #007bff;
+    background-color: #0F1C3F;
 }
 
 .btn-danger {
@@ -129,14 +129,3 @@ form select option {
     text-align: center;
 }
 
-.btn-enregistrer {
-    background-color: #0F1C3F;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-top: 10px;
-}
