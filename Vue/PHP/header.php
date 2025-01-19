@@ -53,7 +53,7 @@
                     <!-- Sous-menu -->
                     <ul class="dropdown-menu">
                         <li><a href="Feuilles_de_Matchs.php">Enregistrer Feuille de Match</a></li>
-                        <li><a href="M_Feuilles_de_Matchs.php">Modification Feuille de Match</a></li>
+                        <li><a href="modifier_feuille_de_match.php">Modification Feuille de Match</a></li>
                     </ul>
                 </li>
 
