@@ -69,45 +69,50 @@ $players = getPlayersForMatch($pdo, $matchId);
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($players as $player): ?>
-                <tr>
-                    <td><?= htmlspecialchars($player['Nom'] . " " . $player['Prenom']) ?></td>
-                    <td>
-                        <select name="poste[<?= $player['Numero_Licence'] ?>]">
-                            <option value="Ailier" <?= $player['Poste'] === 'Ailier' ? 'selected' : '' ?>>Ailier</option>
-                            <option value="Meneur" <?= $player['Poste'] === 'Meneur' ? 'selected' : '' ?>>Meneur</option>
-                            <option value="Arrière" <?= $player['Poste'] === 'Arrière' ? 'selected' : '' ?>>Arrière</option>
-                            <option value="Ailier Fort" <?= $player['Poste'] === 'Ailier Fort' ? 'selected' : '' ?>>Ailier Fort</option>
-                            <option value="Pivot" <?= $player['Poste'] === 'Pivot' ? 'selected' : '' ?>>Pivot</option>
-                        </select>
-                    </td>
-                    <td>
-                        <label>
-                            <input type="radio" name="participation[<?= $player['Numero_Licence'] ?>]" value="titulaire" <?= $player['Statut_Participation'] === 'titulaire' ? 'checked' : '' ?>>
-                            Titulaire
-                        </label>
-                        <label>
-                            <input type="radio" name="participation[<?= $player['Numero_Licence'] ?>]" value="remplaçant" <?= $player['Statut_Participation'] === 'remplaçant' ? 'checked' : '' ?>>
-                            Remplaçant
-                        </label>
-                    </td>
-                    <td>
-                        <input type="text" name="commentaire[<?= $player['Numero_Licence'] ?>]" value="<?= htmlspecialchars($player['Commentaires'] ?? '') ?>">
-                    </td>
-                    <td>
-                        <input type="number" name="note[<?= $player['Numero_Licence'] ?>]" value="<?= htmlspecialchars($player['Note'] ?? '') ?>" min="1" max="5">
-                    </td>
-                    <td>
-                        <!-- Bouton pour supprimer un joueur -->
-                        <button type="submit" name="delete_player" value="<?= htmlspecialchars($player['Numero_Licence']) ?>">Supprimer</button>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
+    <?php foreach ($players as $player): ?>
+        <tr>
+            <td><?= htmlspecialchars($player['Nom'] . " " . $player['Prenom']) ?></td>
+            <td>
+                <select name="poste[<?= $player['Numero_Licence'] ?>]">
+                    <option value="Ailier" <?= $player['Poste'] === 'Ailier' ? 'selected' : '' ?>>Ailier</option>
+                    <option value="Meneur" <?= $player['Poste'] === 'Meneur' ? 'selected' : '' ?>>Meneur</option>
+                    <option value="Arrière" <?= $player['Poste'] === 'Arrière' ? 'selected' : '' ?>>Arrière</option>
+                    <option value="Ailier Fort" <?= $player['Poste'] === 'Ailier Fort' ? 'selected' : '' ?>>Ailier Fort</option>
+                    <option value="Pivot" <?= $player['Poste'] === 'Pivot' ? 'selected' : '' ?>>Pivot</option>
+                </select>
+            </td>
+            <td>
+                <label>
+                    <input type="radio" name="participation[<?= $player['Numero_Licence'] ?>]" value="titulaire" <?= $player['Statut_Participation'] === 'titulaire' ? 'checked' : '' ?>>
+                    Titulaire
+                </label>
+                <label>
+                    <input type="radio" name="participation[<?= $player['Numero_Licence'] ?>]" value="remplaçant" <?= $player['Statut_Participation'] === 'remplaçant' ? 'checked' : '' ?>>
+                    Remplaçant
+                </label>
+            </td>
+            <td>
+                <input type="text" name="commentaire[<?= $player['Numero_Licence'] ?>]" value="<?= htmlspecialchars($player['Commentaires'] ?? '') ?>">
+            </td>
+            <td>
+                <input type="number" name="note[<?= $player['Numero_Licence'] ?>]" value="<?= htmlspecialchars($player['Note'] ?? '') ?>" min="1" max="5">
+            </td>
+            <td>
+                <!-- Formulaire individuel pour le bouton Supprimer -->
+                <form method="POST" action="../../Controleur/modifier_feuille.php" style="display: inline;">
+                    <input type="hidden" name="Id_Match" value="<?= htmlspecialchars($matchId) ?>">
+                    <input type="hidden" name="Numero_Licence" value="<?= htmlspecialchars($player['Numero_Licence']) ?>">
+                    <button type="submit" name="delete_player" value="1" class="btn btn-danger">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
+
     </table>
 
     <!-- Bouton pour enregistrer les modifications -->
-    <button type="submit" name="save_changes" value="1">Enregistrer les Modifications</button>
+    <button type="submit" name="save_changes" value="1" class="btn-enregistrer">Enregistrer les Modifications</button>
 </form>
 
     <?php else: ?>

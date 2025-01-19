@@ -62,6 +62,6 @@ form {
     flex-direction: column;
 }
 
-form > *:not(button) {
+form>*:not(button) {
     margin-bottom: 10px;
 }

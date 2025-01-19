@@ -60,14 +60,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Gestion de la suppression des joueurs
         if (isset($_POST['delete_player']) && !empty($_POST['Numero_Licence'])) {
+            $numeroLicence = $_POST['Numero_Licence'];
             $deleteQuery = $pdo->prepare("
                 DELETE FROM participer
                 WHERE Numero_Licence = :numero_licence AND Id_Match = :match_id
             ");
             $deleteQuery->execute([
-                'numero_licence' => $_POST['Numero_Licence'],
+                'numero_licence' => $numeroLicence,
                 'match_id' => $matchId,
             ]);
+        
+            // Optionnel : Ajouter un message de confirmation ou un log
+            error_log("Joueur $numeroLicence supprimé du match $matchId.");
         }
 
         // Rediriger après les modifications
