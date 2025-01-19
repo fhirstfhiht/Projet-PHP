@@ -9,9 +9,6 @@ function getDBConnection() {
 
 /**
  * Récupérer les informations d'un match
- * @param PDO $db
- * @param int $idMatch
- * @return array|false
  */
 function getMatchData(PDO $db, $idMatch) {
     $query = "SELECT * FROM matchs WHERE Id_Match = :id";

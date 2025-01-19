@@ -9,9 +9,6 @@ function getDBConnection() {
 
 /**
  * Récupérer les informations d'un joueur via son Numero_Licence.
- * @param PDO    $pdo
- * @param string $licenceId
- * @return array|false
  */
 function getJoueurById(PDO $pdo, string $licenceId) {
     $query = $pdo->prepare("SELECT * FROM joueurs WHERE Numero_Licence = :id");
@@ -22,9 +19,6 @@ function getJoueurById(PDO $pdo, string $licenceId) {
 
 /**
  * Mettre à jour les informations du joueur, y compris les commentaires.
- * @param PDO    $pdo
- * @param string $licenceId
- * @param array  $joueurData
  */
 function updateJoueur(PDO $pdo, string $licenceId, array $joueurData) {
     $updateQuery = $pdo->prepare(

@@ -1,7 +1,7 @@
 <?php
 function connectDB() {
     $host = 'localhost'; 
-    $db = 'projet'; //change le nom de la base de données 
+    $db = 'projet'; 
     $user = 'root'; 
     $pass = '';
     $charset = 'utf8mb4';

@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
         $deleteMatchStmt = $db->prepare($deleteMatchQuery);
         $deleteMatchStmt->execute([':id' => $idMatch]);
 
-        header('Location: ../Vue/php/Liste_Match.php?message=success');
+        header('Location: ../Vue/PHP/Liste_Match.php?message=success');
         exit;
     } catch (PDOException $e) {
         echo "Erreur lors de la suppression : " . $e->getMessage();
