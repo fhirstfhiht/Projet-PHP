@@ -1,4 +1,4 @@
-/* Style général pour le formulaire */
+
 form {
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@ form {
     font-family: Arial, sans-serif;
 }
 
-/* Style pour le label */
+
 form label {
     font-size: 16px;
     font-weight: bold;
@@ -16,12 +16,10 @@ form label {
     color: #333;
 }
 
-/* Style pour le select */
+
 form select {
     width: 100%;
-    /* Prend toute la largeur du conteneur */
     max-width: 400px;
-    /* Limite la largeur pour une meilleure lisibilité */
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -31,16 +29,13 @@ form select {
     transition: border-color 0.3s ease;
 }
 
-/* Focus sur le champ select */
+
 form select:focus {
     border-color: #4CAF50;
-    /* Bordure verte au focus */
     outline: none;
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-    /* Effet lumineux */
 }
 
-/* Style pour les options */
 form select option {
     padding: 10px;
     font-size: 14px;

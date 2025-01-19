@@ -1,16 +1,14 @@
-/* Section des statistiques globales */
 .general-stats {
-    background-color: #ffffff; /* Couleur de fond blanche */
+    background-color: #ffffff; 
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15); /* Ombre plus douce */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15); 
     margin-bottom: 30px;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Titre des statistiques globales */
 .general-stats h2 {
     color: #1a237e;
     font-size: 28px;
@@ -21,24 +19,22 @@
     letter-spacing: 1px;
 }
 
-/* Conteneur pour aligner les statistiques */
 .stats-container {
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* Étire les éléments pour remplir la largeur */
+    align-items: stretch; 
     gap: 15px;
 }
 
-/* Chaque statistique individuelle */
 .stats-container p {
-    background-color: #e8f0fe; /* Couleur douce avec un léger contraste */
+    background-color: #e8f0fe; 
     color: #0d47a1;
     border: none;
     border-radius: 8px;
     padding: 15px 20px;
     width: 100%;
     max-width: 500px;
-    margin: 0 auto; /* Centre les statistiques */
+    margin: 0 auto; 
     text-align: center;
     font-size: 18px;
     font-weight: 600;
@@ -46,8 +42,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Animation au survol des statistiques */
 .stats-container p:hover {
-    transform: translateY(-5px); /* Élévation plus marquée */
+    transform: translateY(-5px); 
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 }
