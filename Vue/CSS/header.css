@@ -1,9 +1,3 @@
-/* ========================
-   1. Styles de base (existant)
-   ======================== */
-
-/* ... votre CSS existant (header, nav, etc.) ... */
-
 header {
     display: flex;
     align-items: center;
@@ -36,7 +30,7 @@ nav ul {
 nav ul li {
     display: flex;
     align-items: center;
-    position: relative; /* Nécessaire pour le positionnement du dropdown */
+    position: relative; 
 }
 
 nav ul li a {
@@ -71,49 +65,41 @@ nav ul li a.active {
     color: #EA5E07;
 }
 
-/* ========================
-   2. Dropdown : sous-menus
-   ======================== */
-
-/* Le sous-menu est masqué par défaut */
 .dropdown-menu {
-    display: none;         /* Masqué tant qu’on ne survole pas le parent */
-    position: absolute;    /* Positionné relativement au parent .dropdown */
-    top: 100%;             /* Aligne le haut du menu déroulant juste sous le lien parent */
+    display: none;         
+    position: absolute;    
+    top: 100%;             
     left: 0;
     background-color: #ffffff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     border-radius: 6px;
-    min-width: 120px;      /* Largeur minimale du sous-menu */
-    padding: 3px 0;        /* Espacement vertical interne */
-    z-index: 9999;         /* Au-dessus du contenu */
+    min-width: 120px;     
+    padding: 3px 0;        
+    z-index: 9999;       
 }
 
-/* Chaque élément du sous-menu */
 .dropdown-menu li {
-    display: block; /* On passe chaque élément en bloc vertical */
-    margin: 0;      /* Reset marge pour le sous-menu */
+    display: block; 
+    margin: 0;      
 }
 
-/* Les liens dans le sous-menu */
 .dropdown-menu li a {
 	font-size: 1.2rem;
-    margin: 0;               /* Pas de marge horizontale */
-    padding: 8px 16px;       /* Élargit la zone cliquable */
+    margin: 0;              
+    padding: 8px 16px;      
     background-color: #ffffff;
     color: #000000;
-    border-radius: 0;        /* Retire le border-radius si besoin */
-    display: block;          /* Pour prendre toute la largeur */
+    border-radius: 0;        
+    display: block;          
 }
 
-/* Au survol du lien dans le sous-menu, on applique un style */
 .dropdown-menu li a:hover {
     background-color: #EA5E07;
     color: #ffffff;
     border-radius: 0;
 }
 
-/* Quand on survole le parent .dropdown, on affiche le sous-menu */
+
 .dropdown:hover .dropdown-menu {
     display: block;
 }
